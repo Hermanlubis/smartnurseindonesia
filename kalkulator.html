@@ -43,6 +43,7 @@
                 ● Inpatient Care Suite v3.6
             </span>
         </header>
+        
 
         <!-- MAIN CONTENT -->
         <div class="content-scroll px-4 py-3 pb-24">
@@ -476,17 +477,7 @@
                 </div>
             </div>
 
-        </div>
-
-        <!-- BOTTOM NAV [LOCKED] -->
-        <nav class="bg-white border-t border-slate-100 fixed bottom-0 left-0 right-0 h-16 shadow-xl flex justify-around items-center z-50 shrink-0 px-2">
-            <button onclick="navigateTo('kritis')" id="nav-kritis" class="active-nav flex flex-col items-center justify-center text-slate-400 text-center w-1/4 transition-all cursor-pointer"><i class="fa-solid fa-kit-medical text-sm mb-0.5"></i><span class="text-[9px] font-bold tracking-tight">Kritis</span></button>
-            <button onclick="navigateTo('ugd')" id="nav-ugd" class="flex flex-col items-center justify-center text-slate-400 text-center w-1/4 transition-all cursor-pointer"><i class="fa-solid fa-truck-medical text-sm mb-0.5"></i><span class="text-[9px] font-bold tracking-tight">UGD</span></button>
-            <button onclick="navigateTo('anak')" id="nav-anak" class="flex flex-col items-center justify-center text-slate-400 text-center w-1/4 transition-all cursor-pointer"><i class="fa-solid fa-baby text-sm mb-0.5"></i><span class="text-[9px] font-bold tracking-tight">Anak</span></button>
-            <button onclick="navigateTo('rawat')" id="nav-rawat" class="flex flex-col items-center justify-center text-slate-400 text-center w-1/4 transition-all cursor-pointer"><i class="fa-solid fa-hotel text-sm mb-0.5"></i><span class="text-[9px] font-bold tracking-tight">Rawat Inap</span></button>
-        </nav>
-
-    </div>
+        
 
     <script>
         window.onload = function() {
@@ -888,5 +879,32 @@
     <div class="text-center cursor-pointer"><i class="fa fa-book"></i><p class="text-[9px] font-bold">E-Book</p></div>
     <div class="text-center cursor-pointer"><i class="fa fa-user"></i><p class="text-[9px] font-bold">Profil</p></div>
 </div>
+<!-- BOTTOM NAV [LOCKED] -->
+    <nav class="bg-white border-t border-slate-100 fixed bottom-0 left-0 right-0 h-16 shadow-xl flex justify-around items-center z-50 shrink-0 px-2">
+        
+        <!-- Tombol Kembali ke Home (Paling Kiri) -->
+        <a href="index.html" class="flex flex-col items-center justify-center text-blue-600 text-center w-1/5 transition-all cursor-pointer">
+            <i class="fa-solid fa-house text-sm mb-0.5"></i>
+            <span class="text-[9px] font-bold tracking-tight">Home</span>
+        </a>
+
+        <!-- Tombol Navigasi Kalkulator -->
+        <button onclick="navigateTo('kritis')" id="nav-kritis" class="flex flex-col items-center justify-center text-slate-400 text-center w-1/5 transition-all cursor-pointer">
+            <i class="fa-solid fa-kit-medical text-sm mb-0.5"></i>
+            <span class="text-[9px] font-bold tracking-tight">Kritis</span>
+        </button>
+        <button onclick="navigateTo('ugd')" id="nav-ugd" class="flex flex-col items-center justify-center text-slate-400 text-center w-1/5 transition-all cursor-pointer">
+            <i class="fa-solid fa-truck-medical text-sm mb-0.5"></i>
+            <span class="text-[9px] font-bold tracking-tight">UGD</span>
+        </button>
+        <button onclick="navigateTo('anak')" id="nav-anak" class="flex flex-col items-center justify-center text-slate-400 text-center w-1/5 transition-all cursor-pointer">
+            <i class="fa-solid fa-baby text-sm mb-0.5"></i>
+            <span class="text-[9px] font-bold tracking-tight">Anak</span>
+        </button>
+        <button onclick="navigateTo('rawat')" id="nav-rawat" class="flex flex-col items-center justify-center text-slate-400 text-center w-1/5 transition-all cursor-pointer">
+            <i class="fa-solid fa-hotel text-sm mb-0.5"></i>
+            <span class="text-[9px] font-bold tracking-tight">Rawat</span>
+        </button>
+    </nav>
 </body>
 </html>
