@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+    <style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-slate-50 p-4">
+
+    <!-- Filter Buttons -->
+    <div class="flex gap-2 mb-6 overflow-x-auto no-scrollbar">
+        <button onclick="render(allData)" class="px-5 py-2 bg-blue-600 text-white rounded-full text-[11px] font-bold shadow-md">Semua</button>
+        <button onclick="filterData('Gratis')" class="px-5 py-2 bg-white border border-slate-200 text-slate-600 rounded-full text-[11px] font-bold">Gratis</button>
+    </div>
+
+    <!-- Carousel Container -->
+    <div id="card-container" class="flex gap-4 overflow-x-auto no-scrollbar pb-6">
+        <p class="text-xs text-slate-400 italic">Memuat data webinar...</p>
+    </div>
+
+    <!-- Tombol Bantuan WA (Sticky Bottom) -->
+    <div class="mt-4 bg-emerald-600 p-5 rounded-3xl text-white shadow-xl flex justify-between items-center">
+        <div>
+            <h3 class="font-bold text-sm">Butuh Bantuan SKP?</h3>
+            <p class="text-[10px] opacity-80">Konsultasikan kebutuhan administrasi Anda</p>
+        </div>
+        <a href="https://wa.me/6282269723183" target="_blank" class="bg-white text-emerald-600 px-4 py-2 rounded-2xl font-bold text-[10px] shadow-lg">Chat Admin</a>
+    </div>
+
+    <!-- Modal Detail -->
+    <div id="modal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-end justify-center p-4">
+        <div class="bg-white w-full rounded-[30px] p-6 max-h-[80vh] overflow-y-auto">
+            <h2 id="m-judul" class="font-bold text-lg mb-2"></h2>
+            <p id="m-desc" class="text-xs text-slate-600 mb-4"></p>
+            <div class="flex gap-2 mb-6">
+                <span id="m-skp" class="bg-blue-100 text-blue-600 px-3 py-1 rounded-lg text-[10px] font-bold"></span>
+                <span id="m-jpl" class="bg-slate-100 text-slate-600 px-3 py-1 rounded-lg text-[10px] font-bold"></span>
+            </div>
+            <a id="m-link" href="#" target="_blank" class="block text-center mb-3 w-full bg-blue-600 text-white py-3 rounded-2xl font-bold text-sm">Daftar Sekarang</a>
+            <button onclick="closeModal()" class="w-full bg-slate-100 text-slate-600 py-3 rounded-2xl font-bold text-sm">Tutup</button>
+        </div>
+    </div>
+
+    <script>
+        const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR01s24auic-re_5n5b8cqJmMuEweKleZAmxvKGElG1Sgj8fHADcRPdw7-l_21oUf4bBL5Tvs1k_iIC/pub?output=csv';
+        let allData = [];
+
+        async function loadData() {
+            const response = await fetch(CSV_URL);
+            const csvText = await response.text();
+            Papa.parse(csvText, {
+                header: true,
+                complete: function(results) {
+                    allData = results.data.filter(row => row.Judul);
+                    render(allData);
+                }
+            });
+        }
+
+        function render(items) {
+            const container = document.getElementById('card-container');
+            container.innerHTML = items.map((item, index) => `
+                <div class="min-w-[200px] bg-white rounded-[25px] shadow-sm border border-slate-100 overflow-hidden">
+                    <img src="${item.ImageURL}" class="w-full h-24 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-bold text-xs truncate">${item.Judul}</h3>
+                        <p class="text-[9px] text-slate-400 mb-3">${item.Penyelenggara}</p>
+                        <button onclick="openModal(${index})" class="w-full bg-blue-50 text-blue-600 py-2 rounded-xl text-[10px] font-bold">Detail</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function openModal(i) {
+            const item = allData[i];
+            document.getElementById('m-judul').innerText = item.Judul;
+            document.getElementById('m-desc').innerText = item.Deskripsi;
+            document.getElementById('m-skp').innerText = item.SKP + " SKP";
+            document.getElementById('m-jpl').innerText = item.JPL + " JPL";
+            document.getElementById('m-link').href = item.Link;
+            document.getElementById('modal').classList.remove('hidden');
+        }
+
+        function filterData(k) {
+            render(allData.filter(i => i.Kategori === k));
+        }
+
+        function closeModal() { document.getElementById('modal').classList.add('hidden'); }
+        
+        loadData();
+    </script>
+</body>
+</html>
