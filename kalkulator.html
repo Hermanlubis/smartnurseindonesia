@@ -2,222 +2,876 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Nurse App</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SmartNurse Pro - Ultimate Hospital & Pediatric Suite</title>
+    
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    
+    <style>
+        html, body { position: fixed; overflow: hidden; width: 100%; height: 100%; user-select: none; }
+        .app-container { height: 100vh; display: flex; flex-direction: column; }
+        .content-scroll { flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+        .active-nav { color: #0ea5e9 !important; transform: translateY(-2px); }
+        .active-nav i { background-color: #f0f9ff; padding: 8px 16px; border-radius: 9999px; color: #0ea5e9; }
+        .sub-active-kritis { background-color: #0ea5e9 !important; color: #ffffff !important; border-color: #0ea5e9 !important; }
+        .sub-active-ugd { background-color: #e11d48 !important; color: #ffffff !important; border-color: #e11d48 !important; }
+        .sub-active-anak { background-color: #10b981 !important; color: #ffffff !important; border-color: #10b981 !important; }
+        .sub-active-rawat { background-color: #6366f1 !important; color: #ffffff !important; border-color: #6366f1 !important; }
+        input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+    </style>
 </head>
-<body class="bg-gray-50">
+<body class="bg-slate-50 text-slate-800 font-sans antialiased">
 
-    <div class="p-6 bg-white">
-        <h1 class="text-xl font-extrabold text-gray-800">Halo, Perawat Hebat! 👋</h1>
-        <p class="text-sm text-gray-500">Tetap semangat memberikan perawatan terbaik.</p>
-        <div class="mt-4 relative">
-            <input type="text" placeholder="Cari fitur, kalkulator, artikel..." class="w-full pl-10 pr-4 py-3 bg-gray-100 rounded-2xl text-sm outline-none">
-            <i class="fa fa-search absolute left-4 top-3.5 text-gray-400"></i>
-        </div>
-    </div>
-
-    <div class="mx-4 mt-4 p-6 bg-blue-700 rounded-3xl text-white flex justify-between items-center">
-        <div class="w-2/3">
-            <h2 class="font-bold text-lg">AI Diagnosa Keperawatan</h2>
-            <p class="text-[10px] opacity-80 mt-1 mb-3">Dapatkan diagnosa beserta prioritasnya secara instan.</p>
-            <button class="bg-white text-blue-700 px-4 py-2 rounded-xl text-xs font-bold">Mulai Analisis →</button>
-        </div>
-        <div class="text-4xl">🤖</div>
-    </div>
-
-    <div class="p-6">
-        <div class="flex justify-between mb-4">
-            <h3 class="font-bold text-gray-800">Fitur Unggulan</h3>
-            <span class="text-teal-600 text-xs font-bold cursor-pointer">Lihat Semua</span>
-        </div>
-        <div class="grid grid-cols-4 gap-3 text-center">
-            <div class="bg-white p-3 rounded-2xl shadow-sm"><i class="fa fa-calculator text-blue-500 mb-2"></i><p class="text-[9px] font-bold">Kalkulator</p></div>
-            <div class="bg-white p-3 rounded-2xl shadow-sm"><i class="fa fa-brain text-purple-500 mb-2"></i><p class="text-[9px] font-bold">AI Diagnosa</p></div>
-            <div class="bg-white p-3 rounded-2xl shadow-sm"><i class="fa fa-file-alt text-teal-500 mb-2"></i><p class="text-[9px] font-bold">Care Plan</p></div>
-            <div class="bg-white p-3 rounded-2xl shadow-sm"><i class="fa fa-book text-blue-700 mb-2"></i><p class="text-[9px] font-bold">Artikel</p></div>
-            <div class="bg-white p-3 rounded-2xl shadow-sm"><i class="fa fa-book-open text-indigo-500 mb-2"></i><p class="text-[9px] font-bold">E-Book</p></div>
-            <div class="bg-white p-3 rounded-2xl shadow-sm"><i class="fa fa-robot text-purple-700 mb-2"></i><p class="text-[9px] font-bold">Nurse AI</p></div>
-            <div class="bg-white p-3 rounded-2xl shadow-sm"><i class="fa fa-calendar text-blue-400 mb-2"></i><p class="text-[9px] font-bold">Webinar</p></div>
-        </div>
-    </div>
-
-    <div class="fixed bottom-0 w-full bg-white border-t p-4 flex justify-around text-gray-400">
-        <div class="text-teal-600 text-center"><i class="fa fa-home"></i><p class="text-[9px] font-bold">Beranda</p></div>
-        <div class="text-center"><i class="fa fa-calculator"></i><p class="text-[9px] font-bold">Kalkulator</p></div>
-        <div class="text-center"><i class="fa fa-brain"></i><p class="text-[9px] font-bold">Diagnosa</p></div>
-        <div class="text-center"><i class="fa fa-book"></i><p class="text-[9px] font-bold">E-Book</p></div>
-        <div class="text-center"><i class="fa fa-user"></i><p class="text-[9px] font-bold">Profil</p></div>
-    </div>
-
-</body>
-</html><!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Nurse App</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body class="bg-gray-50 pb-24">
-
-    <div id="page-home" class="page active-page">
-        <div class="p-6 bg-white shadow-sm">
-            <h1 class="text-xl font-extrabold text-gray-800">Halo, Perawat Hebat! 👋</h1>
-            <p class="text-sm text-gray-500">Tetap semangat memberikan perawatan terbaik.</p>
-            <input type="text" id="searchInput" onkeyup="searchFeature()" placeholder="Cari fitur..." class="w-full mt-4 p-3 bg-gray-100 rounded-2xl text-sm outline-none">
-        </div>
-
-        <div class="p-4">
-            <h3 class="font-bold text-gray-800 mb-4">Fitur Unggulan</h3>
-            <div id="featureGrid" class="grid grid-cols-4 gap-3 text-center">
-                <div class="feature-item bg-white p-3 rounded-2xl border shadow-sm cursor-pointer"><i class="fa fa-calculator text-blue-500 mb-2"></i><p class="text-[9px] font-bold">Kalkulator</p></div>
-                <div class="feature-item bg-white p-3 rounded-2xl border shadow-sm cursor-pointer"><i class="fa fa-brain text-purple-500 mb-2"></i><p class="text-[9px] font-bold">AI Diagnosa</p></div>
-                <div onclick="showPage('careplan')" class="feature-item bg-white p-3 rounded-2xl border shadow-sm cursor-pointer"><i class="fa fa-file-alt text-teal-500 mb-2"></i><p class="text-[9px] font-bold">Care Plan</p></div>
-                <div class="feature-item bg-white p-3 rounded-2xl border shadow-sm cursor-pointer"><i class="fa fa-book text-blue-700 mb-2"></i><p class="text-[9px] font-bold">Artikel</p></div>
-                <div class="feature-item bg-white p-3 rounded-2xl border shadow-sm cursor-pointer"><i class="fa fa-book-open text-indigo-500 mb-2"></i><p class="text-[9px] font-bold">E-Book</p></div>
-                <div class="feature-item bg-white p-3 rounded-2xl border shadow-sm cursor-pointer"><i class="fa fa-robot text-purple-700 mb-2"></i><p class="text-[9px] font-bold">Nurse AI</p></div>
-                <div onclick="showPage('webinar')" class="feature-item bg-white p-3 rounded-2xl border shadow-sm cursor-pointer"><i class="fa fa-calendar text-blue-400 mb-2"></i><p class="text-[9px] font-bold">Webinar</p></div>
+    <div class="app-container">
+        
+        <!-- HEADER -->
+        <header class="bg-white border-b border-slate-100 px-4 py-3 flex justify-between items-center shrink-0 shadow-xs z-50">
+            <div class="flex items-center space-x-2">
+                <div class="bg-sky-500 text-white w-8 h-8 rounded-lg flex items-center justify-center shadow-md">
+                    <i class="fa-solid fa-heart-pulse text-sm animate-pulse"></i>
+                </div>
+                <div>
+                    <h1 class="text-base font-black tracking-tight text-slate-900">SmartNurse<span class="text-sky-500">Pro</span></h1>
+                </div>
             </div>
+            <span class="bg-indigo-50 text-indigo-600 font-bold text-[10px] px-2.5 py-1 rounded-full border border-indigo-100">
+                ● Inpatient Care Suite v3.6
+            </span>
+        </header>
+
+        <!-- MAIN CONTENT -->
+        <div class="content-scroll px-4 py-3 pb-24">
+            
+            <!-- ================= SECTION 1: KRITIS (ICU/ICCU) [LOCKED] ================= -->
+            <div id="section-kritis" class="tab-section space-y-3 animate__animated animate__fadeIn animate__fast">
+                <div class="grid grid-cols-4 gap-1 bg-slate-100 p-1 rounded-xl text-[10px] font-bold text-slate-500 sticky top-0 z-40 shadow-xs">
+                    <button onclick="switchSubKritis('obat')" id="sub-kritis-obat" class="sub-active-kritis py-2 rounded-lg text-center cursor-pointer">Titrasi & Resus</button>
+                    <button onclick="switchSubKritis('hemo')" id="sub-kritis-hemo" class="py-2 rounded-lg text-center cursor-pointer">Hemodinamik</button>
+                    <button onclick="switchSubKritis('agd')" id="sub-kritis-agd" class="py-2 rounded-lg text-center cursor-pointer">AGD</button>
+                    <button onclick="switchSubKritis('elektrolit')" id="sub-kritis-elektrolit" class="py-2 rounded-lg text-center cursor-pointer">Elektrolit Master</button>
+                </div>
+                
+                <!-- Sub Kritis: Titrasi -->
+                <div id="sub-card-obat" class="sub-kritis-card bg-white p-4 rounded-2xl border border-slate-200/50 shadow-xs space-y-3">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-xs font-bold text-slate-900">Kalkulator Syringe Pump & Drip Master</h3>
+                        <select id="kr_preset_obat" onchange="applyPresetObatMaster()" class="text-[10px] border border-sky-200 bg-sky-50 text-sky-700 rounded-md p-1 font-bold">
+                            <option value="custom">-- Pilih Sediaan Obat --</option>
+                            <option value="dopa">Dopamin (200 mg)</option>
+                            <option value="dobu">Dobutamin (250 mg)</option>
+                            <option value="ne">Norepinefrin / Vascon (4 mg)</option>
+                            <option value="epi">Epinefrin (1 mg)</option>
+                            <option value="milrinone">Milrinon (10 mg)</option>
+                            <option value="levo">Levosimendan (12.5 mg)</option>
+                            <option value="aminofilin">Aminofilin (240 mg)</option>
+                            <option value="bicnat">Bicnat / Meylon (84 mg/100mL)</option>
+                        </select>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 text-xs">
+                        <div><label class="block text-slate-400 mb-0.5">Sediaan (mg):</label><input type="number" id="kr_sediaan" value="200" oninput="hitungObatKritisMaster()" class="w-full border border-slate-200 rounded-lg p-2 bg-slate-50 font-bold"></div>
+                        <div><label class="block text-slate-400 mb-0.5">Pengenceran / Vol (mL):</label><input type="number" id="kr_pengencer" value="50" oninput="hitungObatKritisMaster()" class="w-full border border-slate-200 rounded-lg p-2 bg-slate-50 font-bold"></div>
+                        <div><label class="block text-slate-400 mb-0.5">Berat Badan (kg):</label><input type="number" id="kr_bb" value="60" oninput="hitungObatKritisMaster(); hitungHemoAdvanced();" class="w-full border border-slate-200 rounded-lg p-2 bg-slate-50 font-bold"></div>
+                        <div><label class="block text-slate-400 mb-0.5" id="lbl_dosis_unit">Dosis (&mu;g/kg/mnt):</label><input type="number" step="0.001" id="kr_dosis" value="5" oninput="hitungObatKritisMaster()" class="w-full border border-slate-200 rounded-lg p-2 bg-slate-50 font-bold text-sky-600"></div>
+                    </div>
+                    <div class="bg-slate-950 p-3 rounded-xl text-center text-white shadow-inner">
+                        <span class="text-slate-400 text-[10px] block">KECEPATAN RUNNING:</span>
+                        <strong id="kr_res_obat" class="text-sky-400 text-lg">3.75 mL/Jam</strong>
+                        <span id="kr_konsentrasi_info" class="text-[9px] text-slate-400 block mt-0.5">Konsentrasi: 4000 &mu;g/mL</span>
+                    </div>
+                </div>
+
+                <!-- Sub Kritis: Hemodinamik -->
+                <div id="sub-card-hemo" class="sub-kritis-card hidden bg-white p-4 rounded-2xl border border-slate-200/50 shadow-xs space-y-3">
+                    <h3 class="text-xs font-bold text-slate-900">Advanced Hemodynamic Profile</h3>
+                    <div class="grid grid-cols-3 gap-2 text-[11px]">
+                        <div><label class="text-slate-400">Sistolik:</label><input type="number" id="hm_sys" value="110" oninput="hitungHemoAdvanced()" class="w-full border border-slate-200 rounded-md p-1 bg-slate-50 font-bold"></div>
+                        <div><label class="text-slate-400">Diastolik:</label><input type="number" id="hm_dia" value="70" oninput="hitungHemoAdvanced()" class="w-full border border-slate-200 rounded-md p-1 bg-slate-50 font-bold"></div>
+                        <div><label class="text-slate-400">HR (bpm):</label><input type="number" id="hm_hr" value="85" oninput="hitungHemoAdvanced()" class="w-full border border-slate-200 rounded-md p-1 bg-slate-50 font-bold"></div>
+                        <div><label class="text-slate-400">CVP (mmHg):</label><input type="number" id="hm_cvp" value="8" oninput="hitungHemoAdvanced()" class="w-full border border-slate-200 rounded-md p-1 bg-slate-50 font-bold"></div>
+                        <div><label class="text-slate-400">Tinggi (cm):</label><input type="number" id="hm_tb" value="165" oninput="hitungHemoAdvanced()" class="w-full border border-slate-200 rounded-md p-1 bg-slate-50 font-bold"></div>
+                        <div><label class="text-slate-400">Stroke Vol:</label><input type="number" id="hm_sv" value="65" oninput="hitungHemoAdvanced()" class="w-full border border-slate-200 rounded-md p-1 bg-slate-50 font-bold"></div>
+                    </div>
+                    <div class="bg-slate-950 p-3 rounded-xl grid grid-cols-2 gap-2 text-white text-[11px] shadow-inner">
+                        <div>MAP: <strong id="res_hm_map" class="text-emerald-400">83.3 mmHg</strong></div>
+                        <div>BSA: <strong id="res_hm_bsa" class="text-purple-400">1.66 m²</strong></div>
+                        <div>Cardiac Output (CO): <strong id="res_hm_co" class="text-sky-400">5.5 L/mnt</strong></div>
+                        <div>Cardiac Index (CI): <strong id="res_hm_ci" class="text-teal-400">3.3 L/m²/mnt</strong></div>
+                        <div class="col-span-2 border-t border-slate-800 pt-1">Systemic Vascular Resistance (SVR): <br><strong id="res_hm_svr" class="text-amber-400">1095 dynes.sec/cm⁵</strong></div>
+                    </div>
+                </div>
+
+                <!-- Sub Kritis: AGD -->
+                <div id="sub-card-agd" class="sub-kritis-card hidden bg-white p-4 rounded-2xl border border-slate-200/50 shadow-xs space-y-3">
+                    <h3 class="text-xs font-bold text-slate-900">Interpreter Analisis Gas Darah Otomatis</h3>
+                    <div class="grid grid-cols-3 gap-1.5 text-xs">
+                        <div><label class="block text-slate-400 text-[10px] mb-0.5">pH:</label><input type="number" step="0.01" id="kr_agd_ph" value="7.32" class="w-full border border-slate-200 rounded-lg p-1.5 bg-slate-50 font-bold"></div>
+                        <div><label class="block text-slate-400 text-[10px] mb-0.5">pCO2:</label><input type="number" id="kr_agd_pco2" value="50" class="w-full border border-slate-200 rounded-lg p-1.5 bg-slate-50 font-bold"></div>
+                        <div><label class="block text-slate-400 text-[10px] mb-0.5">HCO3:</label><input type="number" id="kr_agd_hco3" value="26" class="w-full border border-slate-200 rounded-lg p-1.5 bg-slate-50 font-bold"></div>
+                    </div>
+                    <button onclick="hitungAGDKritis()" class="w-full bg-sky-500 text-white font-bold py-2 rounded-xl text-xs shadow-xs cursor-pointer">Interpretasi AGD</button>
+                    <div class="bg-slate-950 p-3 rounded-xl text-center text-white shadow-inner"><span class="text-slate-400 text-[10px] block">KESIMPULAN KLINIS:</span><strong id="kr_res_agd" class="text-rose-400 text-xs">Asidosis Respiratorik Terkompensasi Sebagian</strong></div>
+                </div>
+
+                <!-- Sub Kritis: Elektrolit Master -->
+                <div id="sub-card-elektrolit" class="sub-kritis-card hidden bg-white p-4 rounded-2xl border border-slate-200/50 shadow-xs space-y-3">
+                    <h3 class="text-xs font-bold text-slate-900">Kalkulator Defisit & Koreksi Elektrolit Komprehensif</h3>
+                    <div class="grid grid-cols-2 gap-2 text-xs">
+                        <div class="col-span-2">
+                            <label class="block text-slate-400 mb-0.5 font-semibold text-sky-700">Pilih Jenis Koreksi Elektrolit:</label>
+                            <select id="kr_el_master_jenis" onchange="switchElektrolitMasterLabel()" class="w-full border border-slate-200 rounded-lg p-2 bg-slate-50 font-bold text-slate-800">
+                                <option value="k">1. Kalium (KCL) - Hipokalemia</option>
+                                <option value="na_hipo">2. Natrium (NaCl 3%) - Hiponatremia</option>
+                                <option value="na_hiper">3. Natrium (Defisit Air) - Hipernatremia</option>
+                                <option value="ca">4. Kalsium Glukonas 10% - Hipokalsemia</option>
+                                <option value="mg">5. Magnesium Sulfat (MgSO4) - Hipomagnesemia</option>
+                                <option value="bicnat_corr">6. Bicnat / Meylon - Koreksi Base Defisit</option>
+                            </select>
+                        </div>
+                        <div><label class="block text-slate-400 mb-0.5">Berat Badan (kg):</label><input type="number" id="kr_el_bb" value="60" oninput="hitungElektrolitMaster()" class="w-full border border-slate-200 rounded-lg p-2 bg-slate-50 font-bold"></div>
+                        <div><label class="block text-slate-400 mb-0.5" id="lbl_el_aktual">Nilai Lab Aktual:</label><input type="number" step="0.01" id="kr_el_aktual" value="2.5" oninput="hitungElektrolitMaster()" class="w-full border border-slate-200 rounded-lg p-2 bg-slate-50 font-bold text-red-500"></div>
+                        <div class="col-span-2"><label class="block text-slate-400 mb-0.5" id="lbl_el_target">Target Nilai / Dosis Dikehendaki:</label><input type="number" step="0.1" id="kr_el_target" value="4.0" oninput="hitungElektrolitMaster()" class="w-full border border-slate-200 rounded-lg p-2 bg-slate-50 font-bold text-emerald-600"></div>
+                    </div>
+                    <div class="bg-slate-950 p-3 rounded-xl text-center text-white shadow-inner space-y-1">
+                        <span class="text-slate-400 text-[9px] block">HASIL KOREKSI:</span>
+                        <strong id="kr_res_el" class="text-lg font-black text-amber-400">36.0 mEq KCL</strong>
+                        <span id="kr_info_el" class="text-[9px] text-slate-400 block leading-tight">Kecepatan maks perifer 10 mEq/jam, central 20 mEq/jam via Syringe Pump.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= SECTION 2: EMERGENCY (UGD) [LOCKED] ================= -->
+            <div id="section-ugd" class="tab-section hidden space-y-3 animate__animated animate__fadeIn animate__fast">
+                <div class="grid grid-cols-4 gap-1 bg-slate-100 p-1 rounded-xl text-[10px] font-bold text-slate-500 sticky top-0 z-40 shadow-xs">
+                    <button onclick="switchSubUGD('triage')" id="sub-ugd-triage" class="sub-active-ugd py-2 rounded-lg text-center cursor-pointer">GCS & RTS</button>
+                    <button onclick="switchSubUGD('burn')" id="sub-ugd-burn" class="py-2 rounded-lg text-center cursor-pointer">Luka Bakar</button>
+                    <button onclick="switchSubUGD('shock')" id="sub-ugd-shock" class="py-2 rounded-lg text-center cursor-pointer">Kelas Syok</button>
+                    <button onclick="switchSubUGD('antidote')" id="sub-ugd-antidote" class="py-2 rounded-lg text-center cursor-pointer">Antidote</button>
+                </div>
+
+                <!-- Sub UGD: GCS & RTS -->
+                <div id="sub-card-triage" class="sub-ugd-card bg-white p-4 rounded-2xl border border-slate-200/50 shadow-xs space-y-3">
+                    <h3 class="text-xs font-bold text-slate-900">Kalkulator GCS & Revised Trauma Score (RTS)</h3>
+                    <div class="space-y-2 text-[11px]">
+                        <div><label class="block text-slate-400 mb-0.5">Eye Opening (E):</label><select id="gcs_e" onchange="hitungTriage()" class="w-full border border-slate-200 rounded-lg p-2 bg-slate-50 text-slate-800"><option value="4">4 - Spontan</option><option value="3">3 - Terhadap Suara</option><option value="2">2 - Terhadap Nyeri</option><option value="1">1 - Tidak Ada Respon</option></select></div>
+                        <div><label class="block text-slate-400 mb-0.5">Verbal Response (V):</label><select id="gcs_v" onchange="hitungTriage()" class="w-full border border-slate-200 rounded-lg p-2 bg-slate-50 text-slate-800"><option value="5">5 - Orientasi Baik</option><option value="4">4 - Bingung / Disorientasi</option><option value="3">3 - Kata Tidak Tepat</option><option value="2">2 - Suara Tanpa Arti</option><option value="1">1 - Tidak Ada Respon</option></select></div>
+                        <div><label class="block text-slate-400 mb-0.5">Motor Response (M):</label><select id="gcs_m" onchange="hitungTriage()" class="w-full border border-slate-200 rounded-lg p-2 bg-slate-50 text-slate-800"><option value="6">6 - Mengikuti Perintah</option><option value="5">5 - Melokalisir Nyeri</option><option value="4">4 - Menghindar Nyeri</option><option value="3">3 - Fleksi Abnormal</option><option value="2">2 - Ekstensi Abnormal</option><option value="1">1 - Tidak Ada Respon</option></select></div>
+                        <div class="grid grid-cols-2 gap-2 pt-1 border-t border-slate-100">
+                            <div><label class="block text-slate-400 mb-0.5">Sistolik (SBP):</label><select id="rts_sbp" onchange="hitungTriage()" class="w-full border border-slate-200 rounded-lg p-2 bg-slate-50 text-slate-800 font-bold"><option value="4">>89 mmHg</option><option value="3">76-89 mmHg</option><option value="2">50-75 mmHg</option><option value="1">1-49 mmHg</option><option value="0">0 mmHg</option></select></div>
+                            <div><label class="block text-slate-400 mb-0.5">Respiratory Rate (RR):</label><select id="rts_rr" onchange="hitungTriage()" class="w-full border border-slate-200 rounded-lg p-2 bg-slate-50 text-slate-800 font-bold"><option value="4">10-29 x/mnt</option><option value="3">>29 x/mnt</option><option value="2">6-9 x/mnt</option><option value="1">1-5 x/mnt</option><option value="0">0 (Apneu)</option></select></div>
+                        </div>
+                    </div>
+                    <div class="bg-slate-950 p-3 rounded-xl grid grid-cols-2 gap-2 text-center text-white shadow-inner">
+                        <div><span class="text-slate-400 text-[9px] block">TOTAL GCS:</span><strong id="lbl_gcs_total" class="text-rose-400 text-sm">15</strong></div>
+                        <div><span class="text-slate-400 text-[9px] block">RTS SCORE:</span><strong id="lbl_rts_total" class="text-amber-400 text-sm">7.84</strong></div>
+                    </div>
+                </div>
+
+                <!-- Sub UGD: Luka Bakar -->
+                <div id="sub-card-burn" class="sub-ugd-card hidden bg-white p-4 rounded-2xl border border-slate-200/50 shadow-xs space-y-3">
+                    <h3 class="text-xs font-bold text-slate-900">Parkland Fluid Calculator & Rule of Nines</h3>
+                    <div class="grid grid-cols-2 gap-2 text-xs">
+                        <div><label class="block text-slate-400 text-[10px] mb-0.5">Berat Badan (kg):</label><input type="number" id="ugd_lb_bb" value="60" oninput="hitungLukaBakarUGD()" class="w-full border border-slate-200 rounded-lg p-2 bg-slate-50 font-bold"></div>
+                        <div><label class="block text-slate-400 text-[10px] mb-0.5">Luas Total Burn (%):</label><input type="number" id="ugd_lb_luas" value="18" oninput="hitungLukaBakarUGD()" class="w-full border border-slate-200 rounded-lg p-2 bg-slate-50 font-bold"></div>
+                    </div>
+                    <div class="grid grid-cols-4 gap-1 text-[8.5px] font-bold text-slate-600">
+                        <button onclick="addBurnLuas(9)" class="p-1 border border-slate-200 bg-slate-50 rounded">Kepala (9%)</button>
+                        <button onclick="addBurnLuas(18)" class="p-1 border border-slate-200 bg-slate-50 rounded">Badan (18%)</button>
+                        <button onclick="addBurnLuas(9)" class="p-1 border border-slate-200 bg-slate-50 rounded">Lengan (9%)</button>
+                        <button onclick="document.getElementById('ugd_lb_luas').value=0; hitungLukaBakarUGD();" class="p-1 border border-red-200 bg-red-50 text-red-600 rounded">Reset</button>
+                    </div>
+                    <div class="bg-slate-950 p-3 rounded-xl text-xs space-y-1.5 text-white shadow-inner">
+                        <div class="flex justify-between"><span>Total RL (24 Jam):</span><strong id="ugd_lb_total" class="text-rose-400">4320 mL</strong></div>
+                        <div class="flex justify-between"><span>8 Jam Pertama:</span><strong id="ugd_lb_8jam" class="text-amber-400">2160 mL</strong></div>
+                    </div>
+                </div>
+
+                <!-- Sub UGD: Kelas Syok -->
+                <div id="sub-card-shock" class="sub-ugd-card hidden bg-white p-4 rounded-2xl border border-slate-200/50 shadow-xs space-y-3">
+                    <h3 class="text-xs font-bold text-slate-900">Klasifikasi Syok Hemoragik (ATLS)</h3>
+                    <select id="sh_kelas" onchange="hitungSyokKelas()" class="w-full border border-slate-200 rounded-lg p-2 bg-slate-50 font-bold text-slate-800"><option value="1">Kelas I : SBP Normal</option><option value="2">Kelas II : SBP Normal, HR >100</option><option value="3">Kelas III : SBP Turun, HR >120</option><option value="4">Kelas IV : SBP Rendah, HR >140</option></select>
+                    <input type="number" id="sh_bb" value="60" oninput="hitungSyokKelas()" class="w-full border border-slate-200 rounded-lg p-2 bg-slate-50 font-bold">
+                    <div class="bg-slate-950 p-3 rounded-xl text-xs space-y-1 text-white shadow-inner">
+                        <div class="flex justify-between"><span>Estimasi Kehilangan Volume:</span><strong id="sh_res_vol" class="text-red-400">± 504 mL</strong></div>
+                    </div>
+                </div>
+
+                <!-- Sub UGD: Antidote -->
+                <div id="sub-card-antidote" class="sub-ugd-card hidden bg-white p-4 rounded-2xl border border-slate-200/50 shadow-xs space-y-3">
+                    <h3 class="text-xs font-bold text-slate-900">Kalkulator Dosis Emergency Antidote</h3>
+                    <select id="ant_jenis" class="w-full border border-slate-200 rounded-lg p-2 bg-slate-50 text-xs font-bold text-rose-700"><option value="parasetamol">Parasetamol (Acetilsistein)</option></select>
+                    <input type="number" id="ant_bb" value="50" oninput="hitungAntidote()" class="w-full border border-slate-200 rounded-lg p-2 bg-slate-50 text-xs font-bold">
+                    <div class="bg-slate-950 p-3 rounded-xl text-center shadow-inner"><span id="ant_hasil" class="text-xs font-black text-amber-400">7500 mg</span></div>
+                </div>
+            </div>
+
+            <!-- ================= SECTION 3: PEDIATRIK (ANAK) [LOCKED] ================= -->
+            <div id="section-anak" class="tab-section hidden space-y-3 animate__animated animate__fadeIn animate__fast">
+                <div class="grid grid-cols-5 gap-0.5 bg-slate-100 p-1 rounded-xl text-[8.5px] font-bold text-slate-500 sticky top-0 z-40 shadow-xs">
+                    <button onclick="switchSubAnak('farmako')" id="sub-anak-farmako" class="sub-active-anak py-2 rounded-md text-center cursor-pointer leading-tight">1. Obat & SP</button>
+                    <button onclick="switchSubAnak('cairan')" id="sub-anak-cairan" class="py-2 rounded-md text-center cursor-pointer leading-tight">2. Cairan & El</button>
+                    <button onclick="switchSubAnak('resus')" id="sub-anak-resus" class="py-2 rounded-md text-center cursor-pointer leading-tight">3. Resus & PEWS</button>
+                    <button onclick="switchSubAnak('nutrisi')" id="sub-anak-nutrisi" class="py-2 rounded-md text-center cursor-pointer leading-tight">4. Gizi & Neonatus</button>
+                    <button onclick="switchSubAnak('gejala')" id="sub-anak-gejala" class="py-2 rounded-md text-center cursor-pointer leading-tight">5. Nyeri & Napas</button>
+                </div>
+
+                <!-- PILAR 1: DOSIS OBAT & FARMAKOLOGI -->
+                <div id="sub-card-farmako" class="sub-anak-card bg-white p-4 rounded-2xl border border-slate-200/50 shadow-xs space-y-4">
+                    <div class="border-b border-slate-100 pb-3 space-y-2">
+                        <h4 class="text-xs font-bold text-emerald-800"><i class="fa-solid fa-pills mr-1"></i> 1.1 Kalkulator Dosis Aman (mg/kg)</h4>
+                        <div class="grid grid-cols-3 gap-1.5 text-[10px]">
+                            <div><label class="text-slate-400">BB Anak (kg):</label><input type="number" id="ped_f_bb" value="10" oninput="hitungPilarFarmakologi()" class="w-full border border-slate-200 rounded p-1 font-bold"></div>
+                            <div><label class="text-slate-400">Dosis Terapi (mg/kg):</label><input type="number" id="ped_f_range" value="15" oninput="hitungPilarFarmakologi()" class="w-full border border-slate-200 rounded p-1 font-bold"></div>
+                            <div><label class="text-slate-400">Sediaan (mg/mL):</label><input type="number" id="ped_f_sedia" value="24" oninput="hitungPilarFarmakologi()" class="w-full border border-slate-200 rounded p-1 font-bold"></div>
+                        </div>
+                        <div class="bg-slate-900 p-2 rounded-lg text-[11px] text-white flex justify-between">
+                            <span>Dosis Aman: <strong id="res_f_mg" class="text-emerald-400">150 mg</strong></span>
+                            <span>Volume Berikan: <strong id="res_f_ml" class="text-amber-400">6.25 mL</strong></span>
+                        </div>
+                    </div>
+                    <div class="border-b border-slate-100 pb-3 space-y-2">
+                        <h4 class="text-xs font-bold text-emerald-800"><i class="fa-solid fa-syringe mr-1"></i> 1.2 Syringe Pump Kritis Anak (mcg/kg/mnt)</h4>
+                        <div class="grid grid-cols-4 gap-1 text-[9px]">
+                            <div><label class="text-slate-400">Obat (mg):</label><input type="number" id="ped_sp_mg" value="200" oninput="hitungPilarFarmakologi()" class="w-full border border-slate-200 rounded p-1 font-bold"></div>
+                            <div><label class="text-slate-400">Vol (mL):</label><input type="number" id="ped_sp_vol" value="50" oninput="hitungPilarFarmakologi()" class="w-full border border-slate-200 rounded p-1 font-bold"></div>
+                            <div><label class="text-slate-400">Dosis (mcg):</label><input type="number" id="ped_sp_dos" value="5" oninput="hitungPilarFarmakologi()" class="w-full border border-slate-200 rounded p-1 font-bold text-sky-600"></div>
+                            <div><label class="text-slate-400">BB (kg):</label><input type="number" id="ped_sp_bb" value="10" oninput="hitungPilarFarmakologi()" class="w-full border border-slate-200 rounded p-1 font-bold"></div>
+                        </div>
+                        <div class="bg-slate-900 p-2 rounded-lg text-center text-[11px] text-white">Kecepatan Pompa: <strong id="res_sp_kecepatan" class="text-sky-400">0.75 mL/Jam</strong></div>
+                    </div>
+                    <div class="space-y-2">
+                        <h4 class="text-xs font-bold text-emerald-800"><i class="fa-solid fa-temperature-arrow-down mr-1"></i> 1.3 Quick Antipiretik (Parasetamol & Ibuprofen)</h4>
+                        <div class="grid grid-cols-2 gap-2 text-[10px]">
+                            <div><label class="text-slate-400 font-bold">Parasetamol (10-15 mg/kg):</label><div class="p-2 border border-rose-100 bg-rose-50/50 rounded mt-1">Dosis: <strong id="res_anti_pct_mg" class="text-rose-600">100 - 150 mg</strong><br>Syrup (120mg/5mL): <strong id="res_anti_pct_ml" class="text-rose-600">4.1 - 6.3 mL</strong></div></div>
+                            <div><label class="text-slate-400 font-bold">Ibuprofen (5-10 mg/kg):</label><div class="p-2 border border-amber-100 bg-amber-50/50 rounded mt-1">Dosis: <strong id="res_anti_ib_mg" class="text-amber-600">50 - 100 mg</strong><br>Syrup (100mg/5mL): <strong id="res_anti_ib_ml" class="text-amber-600">2.5 - 5.0 mL</strong></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PILAR 2: CAIRAN & ELEKTROLIT PEDIATRIK -->
+                <div id="sub-card-cairan" class="sub-anak-card hidden bg-white p-4 rounded-2xl border border-slate-200/50 shadow-xs space-y-4">
+                    <div class="border-b border-slate-100 pb-3 space-y-2">
+                        <h4 class="text-xs font-bold text-emerald-800"><i class="fa-solid fa-droplet mr-1"></i> 2.1 Kebutuhan Rumatan (Holliday-Segar)</h4>
+                        <div class="flex items-center space-x-2 text-[11px]"><label class="text-slate-500 w-1/3">BB Anak (kg):</label><input type="number" id="ped_c_bb" value="14" oninput="hitungPilarCairan()" class="w-2/3 border border-slate-200 rounded p-1.5 font-bold"></div>
+                        <div class="bg-slate-900 p-2 rounded-lg text-[11px] text-white grid grid-cols-2 gap-1 text-center"><div>Total/24 Jam: <strong id="res_c_rumatan_hari" class="text-emerald-400">1200 mL</strong></div><div>Tetesan Kebutuhan: <strong id="res_c_rumatan_jam" class="text-amber-400">50 mL/Jam</strong></div></div>
+                    </div>
+                    <div class="border-b border-slate-100 pb-3 space-y-2">
+                        <h4 class="text-xs font-bold text-emerald-800"><i class="fa-solid fa-square-plus mr-1"></i> 2.2 Defisit Rehidrasi Dehidrasi</h4>
+                        <div class="grid grid-cols-2 gap-2 text-[10px]"><div><label class="text-slate-400">Derajat Dehidrasi:</label><select id="ped_c_dehid" onchange="hitungPilarCairan()" class="w-full border border-slate-200 rounded p-1 bg-slate-50 font-bold"><option value="0.05">Ringan (5%)</option><option value="0.10" selected>Sedang (10%)</option><option value="0.15">Berat (15%)</option></select></div><div><label class="text-slate-400">BB Awal (kg):</label><input type="number" id="ped_c_bb_awal" value="10" oninput="hitungPilarCairan()" class="w-full border border-slate-200 rounded p-1 font-bold"></div></div>
+                        <div class="bg-slate-900 p-2 rounded-lg text-center text-[11px] text-white">Estimasi Defisit Cairan: <strong id="res_c_defisit" class="text-rose-400">1000 mL</strong></div>
+                    </div>
+                    <div class="space-y-2">
+                        <h4 class="text-xs font-bold text-emerald-800"><i class="fa-solid fa-flask mr-1"></i> 2.3 Koreksi Elektrolit Pediatrik Sederhana</h4>
+                        <div class="grid grid-cols-3 gap-1.5 text-[9px]"><div><label class="text-slate-400">Jenis:</label><select id="ped_el_jenis" onchange="hitungPilarCairan()" class="w-full border border-slate-200 rounded p-0.5 bg-slate-50 font-bold"><option value="na">Natrium (NaCl 3%)</option><option value="k">Kalium (KCl)</option></select></div><div><label class="text-slate-400">Nilai Lab:</label><input type="number" id="ped_el_lab" value="125" oninput="hitungPilarCairan()" class="w-full border border-slate-200 rounded p-1 font-bold"></div><div><label class="text-slate-400">Target:</label><input type="number" id="ped_el_target" value="135" oninput="hitungPilarCairan()" class="w-full border border-slate-200 rounded p-1 font-bold"></div></div>
+                        <div class="bg-slate-900 p-2 rounded-lg text-center text-[11px] text-white">Kebutuhan Koreksi: <strong id="res_el_hitung" class="text-amber-400">60 mEq Kebutuhan</strong></div>
+                    </div>
+                </div>
+
+                <!-- PILAR 3: KEGAWATDARURATAN & RESUSITASI -->
+                <div id="sub-card-resus" class="sub-anak-card hidden bg-white p-4 rounded-2xl border border-slate-200/50 shadow-xs space-y-4">
+                    <div class="border-b border-slate-100 pb-3 space-y-2">
+                        <h4 class="text-xs font-bold text-emerald-800"><i class="fa-solid fa-lines-leaning mr-1"></i> 3.1 Broselow Quick Metric Guide</h4>
+                        <div class="grid grid-cols-2 gap-2 text-[10px]"><div><label class="text-slate-400">Estimasi BB Anak (kg):</label><input type="number" id="ped_r_bb" value="10" oninput="hitungPilarResus()" class="w-full border border-slate-200 rounded p-1 font-bold text-emerald-600"></div><div><label class="text-slate-400">Usia (Tahun):</label><input type="number" id="ped_r_usia" value="2" oninput="hitungPilarResus()" class="w-full border border-slate-200 rounded p-1 font-bold"></div></div>
+                        <div class="bg-slate-950 p-2.5 rounded-xl text-[10.5px] text-white space-y-1 shadow-inner"><div class="flex justify-between"><span>ETT Uncuffed / Cuffed:</span><strong id="res_r_ett" class="text-emerald-400">4.5 / 4.0 mm</strong></div><div class="flex justify-between"><span>Epinefrin 1:10.000 (IV/IO):</span><strong id="res_r_epi" class="text-rose-400">1.0 mL</strong></div><div class="flex justify-between"><span>Kateter Urine / LMA No:</span><strong id="res_r_alat" class="text-sky-400">Fr 8 / LMA 2</strong></div></div>
+                    </div>
+                    <div class="border-b border-slate-100 pb-3 space-y-2">
+                        <h4 class="text-xs font-bold text-emerald-800"><i class="fa-solid fa-triangle-exclamation mr-1"></i> 3.2 Pediatric Early Warning Score (PEWS)</h4>
+                        <div class="grid grid-cols-3 gap-1 text-[9px]">
+                            <div><label class="text-slate-400">Perilaku:</label><select id="pews_p" onchange="hitungPilarResus()" class="w-full border border-slate-200 rounded p-1 bg-slate-50"><option value="0">0 - Normal</option><option value="1">1 - Letargi</option><option value="2">2 - Mengantuk</option><option value="3">3 - Penurunan</option></select></div>
+                            <div><label class="text-slate-400">Kardio:</label><select id="pews_k" onchange="hitungPilarResus()" class="w-full border border-slate-200 rounded p-1 bg-slate-50"><option value="0">0 - Pink/CRT<2s</option><option value="1">1 - Pucat</option><option value="2">2 - Abu/CRT 4s</option><option value="3">3 - Sianosis</option></select></div>
+                            <div><label class="text-slate-400">Respirasi:</label><select id="pews_r" onchange="hitungPilarResus()" class="w-full border rounded p-1 bg-slate-50"><option value="0">0 - Normal</option><option value="1">1 - Oksigen</option><option value="2">2 - Retraksi</option><option value="3">3 - Grunting</option></select></div>
+                        </div>
+                        <div class="bg-slate-900 p-2 rounded-lg text-center text-[11px] text-white">Total Skor PEWS: <strong id="res_pews_total" class="text-amber-400">0 Poin (Hijau)</strong></div>
+                    </div>
+                    <div class="space-y-2">
+                        <h4 class="text-xs font-bold text-emerald-800"><i class="fa-solid fa-baby-carriage mr-1"></i> 3.3 Neonatus APGAR Score Calculator</h4>
+                        <div class="grid grid-cols-5 gap-0.5 text-[8px] font-bold">
+                            <div>Appeareance<select id="ap_a" onchange="hitungPilarResus()" class="w-full border rounded p-0.5 bg-slate-50 text-[9px]"><option value="2">2-Pink</option><option value="1">1-Acro</option><option value="0">0-Blue</option></select></div>
+                            <div>Pulse<select id="ap_p" onchange="hitungPilarResus()" class="w-full border rounded p-0.5 bg-slate-50 text-[9px]"><option value="2">2->100</option><option value="1">1-<100</option><option value="0">0-Asistol</option></select></div>
+                            <div>Grimace<select id="ap_g" onchange="hitungPilarResus()" class="w-full border rounded p-0.5 bg-slate-50 text-[9px]"><option value="2">2-Batuk</option><option value="1">1-Meringis</option><option value="0">0-Diam</option></select></div>
+                            <div>Activity<select id="ap_ac" onchange="hitungPilarResus()" class="w-full border rounded p-0.5 bg-slate-50 text-[9px]"><option value="2">2-Aktif</option><option value="1">1-Fleksi</option><option value="0">0-Lumpuh</option></select></div>
+                            <div>Respiration<select id="ap_r" onchange="hitungPilarResus()" class="w-full border rounded p-0.5 bg-slate-50 text-[9px]"><option value="2">2-Kuat</option><option value="1">1-Lemah</option><option value="0">0-Apneu</option></select></div>
+                        </div>
+                        <div class="bg-slate-900 p-2 rounded-lg text-center text-[11px] text-white">Hasil APGAR: <strong id="res_apgar_total" class="text-emerald-400">10 Poin</strong></div>
+                    </div>
+                </div>
+
+                <!-- PILAR 4: PERTUMBUHAN & NUTRISI -->
+                <div id="sub-card-nutrisi" class="sub-anak-card hidden bg-white p-4 rounded-2xl border border-slate-200/50 shadow-xs space-y-4">
+                    <div class="border-b border-slate-100 pb-3 space-y-2">
+                        <h4 class="text-xs font-bold text-emerald-800"><i class="fa-solid fa-chart-line mr-1"></i> 4.1 Status Gizi Berat/U (WHO)</h4>
+                        <div class="grid grid-cols-2 gap-2 text-[10px]"><div><label class="text-slate-400">Umur (Bulan):</label><input type="number" id="ped_n_umur" value="12" oninput="hitungPilarNutrisi()" class="w-full border border-slate-200 rounded p-1 font-bold"></div><div><label class="text-slate-400">Berat Aktual (kg):</label><input type="number" id="ped_n_bb" value="9.5" oninput="hitungPilarNutrisi()" class="w-full border border-slate-200 rounded p-1 font-bold"></div></div>
+                        <div class="bg-slate-900 p-2 rounded-lg text-center text-[11px] text-white">Interpretasi Status: <strong id="res_n_zscore" class="text-emerald-400">Gizi Baik (Normal)</strong></div>
+                    </div>
+                    <div class="border-b border-slate-100 pb-3 space-y-2">
+                        <h4 class="text-xs font-bold text-emerald-800"><i class="fa-solid fa-utensils mr-1"></i> 4.2 Kebutuhan Kalori Sakit (TEE)</h4>
+                        <div class="grid grid-cols-2 gap-2 text-[10px]"><div><label class="text-slate-400">BMR Anak (kkal/kg):</label><input type="number" id="ped_n_bmr" value="55" oninput="hitungPilarNutrisi()" class="w-full border border-slate-200 rounded p-1 font-bold"></div><div><label class="text-slate-400">Faktor Stres:</label><select id="ped_n_stres" onchange="hitungPilarNutrisi()" class="w-full border border-slate-200 rounded p-1 bg-slate-50 font-bold"><option value="1.0">1.0 - Istirahat</option><option value="1.2" selected>1.2 - Demam Ringan</option><option value="1.5">1.5 - Sepsis / Trauma</option></select></div></div>
+                        <div class="bg-slate-900 p-2 rounded-lg text-center text-[11px] text-white">Total Energi Target: <strong id="res_n_tee" class="text-sky-400">627 kkal / Hari</strong></div>
+                    </div>
+                    <div class="space-y-2">
+                        <h4 class="text-xs font-bold text-emerald-800"><i class="fa-solid fa-scale-down mr-1"></i> 4.3 Persentase Susut Berat Lahir Neonatus</h4>
+                        <div class="grid grid-cols-2 gap-2 text-[10px]"><div><label class="text-slate-400">Berat Lahir (gram):</label><input type="number" id="ped_n_bbl" value="3200" oninput="hitungPilarNutrisi()" class="w-full border border-slate-200 rounded p-1 font-bold"></div><div><label class="text-slate-400">Berat Sekarang (gram):</label><input type="number" id="ped_n_bb_sekarang" value="3000" oninput="hitungPilarNutrisi()" class="w-full border border-slate-200 rounded p-1 font-bold"></div></div>
+                        <div class="bg-slate-900 p-2 rounded-lg text-center text-[11px] text-white">Penyusutan: <strong id="res_n_susut" class="text-amber-400">6.25%</strong></div>
+                    </div>
+                </div>
+
+                <!-- PILAR 5: PENILAIAN GEJALA KLINIS -->
+                <div id="sub-card-gejala" class="sub-anak-card hidden bg-white p-4 rounded-2xl border border-slate-200/50 shadow-xs space-y-4">
+                    <div class="border-b border-slate-100 pb-3 space-y-2">
+                        <h4 class="text-xs font-bold text-emerald-800"><i class="fa-solid fa-face-sad-tear mr-1"></i> 5.1 Pengukur Skala Nyeri FLACC</h4>
+                        <div class="grid grid-cols-5 gap-0.5 text-[8px] font-bold">
+                            <div>Face<select id="flacc_f" onchange="hitungPilarGejala()" class="w-full border rounded p-0.5 bg-slate-50 text-[9px]"><option value="0">0-Senyum</option><option value="1">1-Kerut</option><option value="2">2-Dagu</option></select></div>
+                            <div>Legs<select id="flacc_l" onchange="hitungPilarGejala()" class="w-full border rounded p-0.5 bg-slate-50 text-[9px]"><option value="0">0-Normal</option><option value="1">1-Gelisah</option><option value="2">2-Tendang</option></select></div>
+                            <div>Activity<select id="flacc_a" onchange="hitungPilarGejala()" class="w-full border rounded p-0.5 bg-slate-50 text-[9px]"><option value="0">0-Tenang</option><option value="1">1-Geliat</option><option value="2">2-Kaku</option></select></div>
+                            <div>Cry<select id="flacc_c" onchange="hitungPilarGejala()" class="w-full border rounded p-0.5 bg-slate-50 text-[9px]"><option value="0">0-No</option><option value="1">1-Rintih</option><option value="2">2-Nangis</option></select></div>
+                            <div>Consol.<select id="flacc_co" onchange="hitungPilarGejala()" class="w-full border rounded p-0.5 bg-slate-50 text-[9px]"><option value="0">0-Rileks</option><option value="1">1-Tenang</option><option value="2">2-Sulit</option></select></div>
+                        </div>
+                        <div class="bg-slate-900 p-2 rounded-lg text-center text-[11px] text-white">Skala Nyeri FLACC: <strong id="res_flacc_total" class="text-emerald-400">0 (Tidak Nyeri)</strong></div>
+                    </div>
+                    <div class="border-b border-slate-100 pb-3 space-y-2">
+                        <h4 class="text-xs font-bold text-emerald-800"><i class="fa-solid fa-lungs mr-1"></i> 5.2 Evaluasi Napas Neonatus (Downes Score)</h4>
+                        <div class="grid grid-cols-4 gap-1 text-[9px]">
+                            <div>RR:<select id="dw_rr" onchange="hitungPilarGejala()" class="w-full border rounded p-1 bg-slate-50"><option value="0"><60x</option><option value="1">60-80x</option><option value="2">>80x</option></select></div>
+                            <div>Retraksi:<select id="dw_ret" onchange="hitungPilarGejala()" class="w-full border rounded p-1 bg-slate-50"><option value="0">Tidak</option><option value="1">Ringan</option><option value="2">Berat</option></select></div>
+                            <div>Sianosis:<select id="dw_sian" onchange="hitungPilarGejala()" class="w-full border rounded p-1 bg-slate-50"><option value="0">Tidak</option><option value="1">O2 Hilang</option><option value="2">Menetap</option></select></div>
+                            <div>Air Entry:<select id="dw_air" onchange="hitungPilarGejala()" class="w-full border rounded p-1 bg-slate-50"><option value="0">Jelas</option><option value="1">Turun</option><option value="2">Hilang</option></select></div>
+                        </div>
+                        <div class="bg-slate-900 p-2 rounded-lg text-center text-[11px] text-white">Skor Downes: <strong id="res_downes_total" class="text-emerald-400">0 Poin (Normal)</strong></div>
+                    </div>
+                    <div class="space-y-2">
+                        <h4 class="text-xs font-bold text-emerald-800"><i class="fa-solid fa-lightbulb mr-1"></i> 5.3 Nomogram Bhutani & Fototerapi</h4>
+                        <div class="grid grid-cols-2 gap-2 text-[10px]"><div><label class="text-slate-400">Usia Bayi (Jam):</label><input type="number" id="ped_g_jam" value="48" oninput="hitungPilarGejala()" class="w-full border border-slate-200 rounded p-1 font-bold"></div><div><label class="text-slate-400">Bilirubin Serum (mg/dL):</label><input type="number" id="ped_g_bili" value="13" oninput="hitungPilarGejala()" class="w-full border border-slate-200 rounded p-1 font-bold text-amber-600"></div></div>
+                        <div class="bg-slate-900 p-2 rounded-lg text-center text-[11px] text-white">Rekomendasi: <strong id="res_gejala_bhutani" class="text-amber-400">High-Intermediate Zone</strong></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= SECTION 4: RAWAT INAP SUITE v3.6 [UPDATED TRIPLED FALL RISK] ================= -->
+            <div id="section-rawat" class="tab-section hidden space-y-3 animate__animated animate__fadeIn animate__fast">
+                <!-- Sub Menu Internal Rawat Inap -->
+                <div class="grid grid-cols-4 gap-1 bg-slate-100 p-1 rounded-xl text-[10px] font-bold text-slate-500 sticky top-0 z-40 shadow-xs">
+                    <button onclick="switchSubRawat('falls')" id="sub-rawat-falls" class="sub-active-rawat py-2 rounded-lg text-center cursor-pointer">Risiko Jatuh 3G</button>
+                    <button onclick="switchSubRawat('news')" id="sub-rawat-news" class="py-2 rounded-lg text-center cursor-pointer">NEWS2 Score</button>
+                    <button onclick="switchSubRawat('braden')" id="sub-rawat-braden" class="py-2 rounded-lg text-center cursor-pointer">Braden Scale</button>
+                    <button onclick="switchSubRawat('balans')" id="sub-rawat-balans" class="py-2 rounded-lg text-center cursor-pointer">Balans Cairan</button>
+                </div>
+
+                <!-- SUB 4.1: TRIPLE FALL RISK SCALES (DEWASA, ANAK, LANSIA) -->
+                <div id="sub-card-falls" class="sub-rawat-card bg-white p-4 rounded-2xl border border-slate-200/50 shadow-xs space-y-3">
+                    <div class="flex justify-between items-center border-b border-slate-100 pb-1.5">
+                        <h3 class="text-xs font-black text-indigo-950 uppercase flex items-center"><i class="fa-solid fa-person-falling mr-1.5 text-rose-500"></i> Triple Fall Risk Engine</h3>
+                        <select id="fall_risk_age_type" onchange="toggleFallRiskAgeView()" class="text-[10px] border border-indigo-200 bg-indigo-50 text-indigo-700 rounded-md p-1 font-bold">
+                            <option value="adult">Dewasa (Morse)</option>
+                            <option value="pediatric">Anak (Humpty Dumpty)</option>
+                            <option value="geriatric">Lansia (Sydney Stratify)</option>
+                        </select>
+                    </div>
+
+                    <!-- 4.1.A Morse Fall Scale (Dewasa) -->
+                    <div id="fall-group-adult" class="space-y-2 text-[10px]">
+                        <div class="grid grid-cols-2 gap-2">
+                            <div>Riwayat Jatuh (3 Bln Terakhir):<select id="mfs_1" onchange="hitungTripleFalls()" class="w-full border rounded p-1 bg-slate-50 font-medium"><option value="0">Tidak (0)</option><option value="25">Ya (25)</option></select></div>
+                            <div>Diagnosis Sekunder (>1 Penyakit):<select id="mfs_2" onchange="hitungTripleFalls()" class="w-full border rounded p-1 bg-slate-50 font-medium"><option value="0">Tidak (0)</option><option value="15">Ya (15)</option></select></div>
+                            <div>Alat Bantu Jalan / Ambulasi:<select id="mfs_3" onchange="hitungTripleFalls()" class="w-full border rounded p-1 bg-slate-50 font-medium"><option value="0">Bedrest / Dibantu (0)</option><option value="15">Kruk / Tongkat / Walker (15)</option><option value="30">Cengkeram Perabot/Dinding (30)</option></select></div>
+                            <div>Terpasang IV Line / Heparin Lock:<select id="mfs_4" onchange="hitungTripleFalls()" class="w-full border rounded p-1 bg-slate-50 font-medium"><option value="0">Tidak (0)</option><option value="20">Ya (20)</option></select></div>
+                            <div>Gaya Berjalan / Mobilisasi:<select id="mfs_5" onchange="hitungTripleFalls()" class="w-full border rounded p-1 bg-slate-50 font-medium"><option value="0">Normal/Lemah (0)</option><option value="20">Terganggu/Limbung/Diseret (20)</option></select></div>
+                            <div>Status Mental / Kognitif:<select id="mfs_6" onchange="hitungTripleFalls()" class="w-full border rounded p-1 bg-slate-50 font-medium"><option value="0">Sadar Keterbatasan (0)</option><option value="15">Lupa/Abaikan Limitasi (15)</option></select></div>
+                        </div>
+                    </div>
+
+                    <!-- 4.1.B Humpty Dumpty Scale (Anak-Anak) -->
+                    <div id="fall-group-pediatric" class="hidden space-y-2 text-[10px]">
+                        <div class="grid grid-cols-2 gap-2">
+                            <div>Umur Anak:<select id="hds_1" onchange="hitungTripleFalls()" class="w-full border rounded p-1 bg-slate-50 font-medium"><option value="4">&lt; 3 Tahun (4)</option><option value="3">3 - 7 Tahun (3)</option><option value="2">7 - 13 Tahun (2)</option><option value="1">&ge; 13 Tahun (1)</option></select></div>
+                            <div>Jenis Kelamin:<select id="hds_2" onchange="hitungTripleFalls()" class="w-full border rounded p-1 bg-slate-50 font-medium"><option value="2">Laki-Laki (2)</option><option value="1">Perempuan (1)</option></select></div>
+                            <div>Diagnosis / Masalah Medis:<select id="hds_3" onchange="hitungTripleFalls()" class="w-full border rounded p-1 bg-slate-50 font-medium"><option value="4">Gangguan Neurologis (4)</option><option value="3">Dehidrasi/Anemia/Respirasi (3)</option><option value="2">Kelemahan Fisik Jelas (2)</option><option value="1">Diagnosis Lain (1)</option></select></div>
+                            <div>Gangguan Kognitif:<select id="hds_4" onchange="hitungTripleFalls()" class="w-full border rounded p-1 bg-slate-50 font-medium"><option value="3">Tidak Sadar Limitasi (3)</option><option value="2">Lupa Batasan Diri (2)</option><option value="1">Orientasi Sesuai Umur (1)</option></select></div>
+                            <div>Faktor Lingkungan:<select id="hds_5" onchange="hitungTripleFalls()" class="w-full border rounded p-1 bg-slate-50 font-medium"><option value="4">Riwayat Jatuh / Tempat Tidur (4)</option><option value="3">Menggunakan Alat Bantu (3)</option><option value="2">Area Pasien Rawat (2)</option><option value="1">Rawat Jalan / Outpatient (1)</option></select></div>
+                            <div>Respon Tindakan / Bedah:<select id="hds_6" onchange="hitungTripleFalls()" class="w-full border rounded p-1 bg-slate-50 font-medium"><option value="3">&lt; 24 Jam Pasca Operasi (3)</option><option value="2">24 - 48 Jam Pasca Operasi (2)</option><option value="1">&gt; 48 Jam / Tanpa Operasi (1)</option></select></div>
+                            <div class="col-span-2">Penggunaan Obat-Obatan:<select id="hds_7" onchange="hitungTripleFalls()" class="w-full border rounded p-1 bg-slate-50 font-medium"><option value="3">Multi/Sedatif/Hipnotik/Narkotik/Diuretik (3)</option><option value="2">Salah Satu Terapi Di Atas (2)</option><option value="1">Terapi Lain / Tanpa Obat (1)</option></select></div>
+                        </div>
+                    </div>
+
+                    <!-- 4.1.C Ontario Modified Stratify - Sydney Scoring (Lansia) -->
+                    <div id="fall-group-geriatric" class="hidden space-y-2 text-[10px]">
+                        <div class="grid grid-cols-2 gap-2">
+                            <div>Riwayat Jatuh (Lansia):<select id="sds_1" onchange="hitungTripleFalls()" class="w-full border rounded p-1 bg-slate-50 font-medium"><option value="0">Tidak Ada Riwayat (0)</option><option value="6">Pernah Jatuh Saat Dirawat/Terakhir (6)</option></select></div>
+                            <div>Status Mental / Kognitif:<select id="sds_2" onchange="hitungTripleFalls()" class="w-full border rounded p-1 bg-slate-50 font-medium"><option value="0">Disorientasi / Agitasi (0)</option><option value="1">Bingung berkala / Demensia (1)</option></select></div>
+                            <div>Gangguan Penglihatan:<select id="sds_3" onchange="hitungTripleFalls()" class="w-full border rounded p-1 bg-slate-50 font-medium"><option value="0">Normal / Kacamata (0)</option><option value="1">Sangat Kabur / Katarak / Buta (1)</option></select></div>
+                            <div>Kebiasaan Berkemih/Eliminasi:<select id="sds_4" onchange="hitungTripleFalls()" class="w-full border rounded p-1 bg-slate-50 font-medium"><option value="0">Mandiri / Teratur (0)</option><option value="2">Urgensi / Inkontinensia / Sering (2)</option></select></div>
+                            <div class="col-span-2">Transfer & Kemampuan Mobilisasi (Skor Maksimal Terpilih):<select id="sds_5" onchange="hitungTripleFalls()" class="w-full border rounded p-1 bg-slate-50 font-medium"><option value="0">0 - Mandiri & Seimbang</option><option value="1">1 - Sedikit Limbung / Butuh Bantuan Minimal</option><option value="3">3 - Sangat Lemah / Tidak Seimbang / Seret Langkah</option></select></div>
+                        </div>
+                    </div>
+
+                    <div class="bg-indigo-950 p-2.5 rounded-xl text-center text-white shadow-inner">
+                        <span class="text-slate-400 text-[8px] block tracking-wider uppercase" id="fall_risk_label_type">Hasil Analisis Morse (Dewasa)</span>
+                        <strong id="res_fall_risk_total" class="text-emerald-400 text-sm">0 POIN (Risiko Rendah)</strong>
+                        <span id="res_fall_risk_action" class="text-[9px] text-slate-300 block mt-0.5 leading-tight">Intervensi pengamanan dasar kamar rawat inap umum.</span>
+                    </div>
+                </div>
+
+                <!-- SUB 4.2: NEWS2 SCORE CALCULATOR -->
+                <div id="sub-card-news" class="sub-rawat-card hidden bg-white p-4 rounded-2xl border border-slate-200/50 shadow-xs space-y-3">
+                    <h3 class="text-xs font-black text-indigo-950 uppercase border-b border-slate-100 pb-1 flex items-center"><i class="fa-solid fa-triangle-exclamation mr-1.5 text-amber-500"></i> Adult NEWS2 Alert Engine</h3>
+                    <div class="grid grid-cols-2 gap-2 text-[11px]">
+                        <div><label class="text-slate-500 font-bold">Laju Napas (RR):</label><select id="news_rr" onchange="hitungNEWS2()" class="w-full border rounded p-1.5 bg-slate-50 font-semibold"><option value="0">12 - 20 x/menit</option><option value="1">9 - 11 x/menit</option><option value="2">21 - 24 x/menit</option><option value="3">&le;8 atau &ge;25 x/menit</option></select></div>
+                        <div><label class="text-slate-500 font-bold">Saturasi SpO2:</label><select id="news_spo2" onchange="hitungNEWS2()" class="w-full border rounded p-1.5 bg-slate-50 font-semibold"><option value="0">&ge;96 %</option><option value="1">94 - 95 %</option><option value="2">92 - 93 %</option><option value="3">&le;91 %</option></select></div>
+                        <div><label class="text-slate-500 font-bold">Alat Bantu Oksigen:</label><select id="news_o2" onchange="hitungNEWS2()" class="w-full border rounded p-1.5 bg-slate-50 font-semibold"><option value="0">Udara Bebas (Room Air)</option><option value="2">Menggunakan Oksigen (Kanul/Masker)</option></select></div>
+                        <div><label class="text-slate-500 font-bold">Tekanan Darah Sistolik:</label><select id="news_sbp" onchange="hitungNEWS2()" class="w-full border rounded p-1.5 bg-slate-50 font-semibold"><option value="0">111 - 219 mmHg</option><option value="1">101 - 110 mmHg</option><option value="2">91 - 100 mmHg</option><option value="3">&le;90 atau &ge;220 mmHg</option></select></div>
+                        <div><label class="text-slate-500 font-bold">Laju Nadi (HR):</label><select id="news_hr" onchange="hitungNEWS2()" class="w-full border rounded p-1.5 bg-slate-50 font-semibold"><option value="0">51 - 90 x/menit</option><option value="1">41-50 atau 91-110 x/mnt</option><option value="2">111 - 130 x/menit</option><option value="3">&le;40 atau &ge;131 x/menit</option></select></div>
+                        <div><label class="text-slate-500 font-bold">Kesadaran:</label><select id="news_avpu" onchange="hitungNEWS2()" class="w-full border rounded p-1.5 bg-slate-50 font-semibold"><option value="0">A (Alert / Sadar Penuh)</option><option value="3">V, P, U (Kebingungan Baru/Unresponsive)</option></select></div>
+                        <div class="col-span-2"><label class="text-slate-500 font-bold">Suhu Tubuh (&deg;C):</label><select id="news_temp" onchange="hitungNEWS2()" class="w-full border rounded p-1.5 bg-slate-50 font-semibold"><option value="0">36.1 - 38.0 &deg;C</option><option value="1">35.1-36.0 atau 38.1-39.0</option><option value="2">&ge;39.1 &deg;C</option><option value="3">&le;35.0 &deg;C</option></select></div>
+                    </div>
+                    <div class="bg-slate-950 p-3 rounded-xl text-center text-white shadow-inner">
+                        <span class="text-slate-400 text-[9px] block tracking-wider">TOTAL SKOR NEWS2:</span>
+                        <strong id="res_news_total" class="text-emerald-400 text-lg">0 POIN</strong>
+                        <span id="res_news_aksi" class="text-[9px] text-slate-400 block mt-0.5 font-medium">Status Aman. Observasi rutin minimal setiap 12 jam sekali.</span>
+                    </div>
+                </div>
+
+                <!-- SUB 4.3: BRADEN SCALE (DEKUBITUS) -->
+                <div id="sub-card-braden" class="sub-rawat-card hidden bg-white p-4 rounded-2xl border border-slate-200/50 shadow-xs space-y-3">
+                    <h4 class="text-xs font-black text-indigo-950 uppercase border-b border-slate-100 pb-1 flex items-center"><i class="fa-solid fa-bed mr-1.5 text-indigo-500"></i> Risiko Luka Tekan (Braden Scale)</h4>
+                    <div class="grid grid-cols-3 gap-1.5 text-[8.5px]">
+                        <div>Persepsi Sensori:<select id="br_1" onchange="hitungBraden()" class="w-full border rounded p-1 bg-slate-50 text-[10px] font-medium"><option value="4">4-Tidak Terbatas</option><option value="3">3-Sedikit Terbatas</option><option value="2">2-Sangat Terbatas</option><option value="1">1-Mati Rasa Total</option></select></div>
+                        <div>Kelembaban Kulit:<select id="br_2" onchange="hitungBraden()" class="w-full border rounded p-1 bg-slate-50 text-[10px] font-medium"><option value="4">4-Jarang Basah</option><option value="3">3-Kadang Basah</option><option value="2">2-Sering Lembab</option><option value="1">1-Lembab Terus</option></select></div>
+                        <div>Aktivitas Fisik:<select id="br_3" onchange="hitungBraden()" class="w-full border rounded p-1 bg-slate-50 text-[10px] font-medium"><option value="4">4-Dapat Berjalan</option><option value="3">3-Jalan Terbatas</option><option value="2">2-Duduk di Kursi</option><option value="1">1-Tirah Baring/Bed</option></select></div>
+                        <div>Mobilitas Tubuh:<select id="br_4" onchange="hitungBraden()" class="w-full border rounded p-1 bg-slate-50 text-[10px] font-medium"><option value="4">4-Bebas Bergerak</option><option value="3">3-Sedikit Terbatas</option><option value="2">2-Sangat Terbatas</option><option value="1">1-Imobil Total</option></select></div>
+                        <div>Pola Nutrisi Makanan:<select id="br_5" onchange="hitungBraden()" class="w-full border rounded p-1 bg-slate-50 text-[10px] font-medium"><option value="4">4-Sangat Baik</option><option value="3">3-Adekuat/Cukup</option><option value="2">2-Kurang/Malnutrisi</option><option value="1">1-Buruk Sekali</option></select></div>
+                        <div>Gesekan / Kerutan Bed:<select id="br_6" onchange="hitungBraden()" class="w-full border rounded p-1 bg-slate-50 text-[10px] font-medium"><option value="3">3-Tidak Bermasalah</option><option value="2">2-Potensial Gesek</option><option value="1">1-Bermasalah Nyata</option></select></div>
+                    </div>
+                    <div class="bg-slate-950 p-2.5 rounded-xl text-center text-white shadow-inner">
+                        <span class="text-slate-400 text-[8px] block tracking-wider uppercase">Skor Evaluasi Braden:</span>
+                        <strong id="res_braden_total" class="text-emerald-400 text-sm">23 Poin (Aman)</strong>
+                    </div>
+                </div>
+
+                <!-- SUB 4.4: BALANS CAIRAN & ESTIMASI IWL -->
+                <div id="sub-card-balans" class="sub-rawat-card hidden bg-white p-4 rounded-2xl border border-slate-200/50 shadow-xs space-y-3">
+                    <h3 class="text-xs font-black text-indigo-950 uppercase border-b border-slate-100 pb-1 flex items-center"><i class="fa-solid fa-droplet-slash mr-1.5 text-sky-500"></i> Balans Cairan & IWL Harian Pasien</h3>
+                    <div class="grid grid-cols-2 gap-2 text-xs">
+                        <div class="space-y-1.5 p-2 bg-emerald-50/50 border border-emerald-100 rounded-xl">
+                            <span class="font-bold text-emerald-800 text-[10px] block uppercase"><i class="fa-solid fa-arrow-right-to-bracket mr-1"></i> Total Intake (mL):</span>
+                            <div><label class="text-[10px] text-slate-400">Oral/Makan/NGT:</label><input type="number" id="bc_in_oral" value="1000" oninput="hitungBalansCairan()" class="w-full border border-slate-200 rounded p-1 bg-white font-bold"></div>
+                            <div><label class="text-[10px] text-slate-400">Infus / Cairan IV:</label><input type="number" id="bc_in_iv" value="1500" oninput="hitungBalansCairan()" class="w-full border border-slate-200 rounded p-1 bg-white font-bold"></div>
+                        </div>
+                        <div class="space-y-1.5 p-2 bg-rose-50/50 border border-rose-100 rounded-xl">
+                            <span class="font-bold text-rose-800 text-[10px] block uppercase"><i class="fa-solid fa-arrow-right-from-bracket mr-1"></i> Total Output (mL):</span>
+                            <div><label class="text-[10px] text-slate-400">Volume Urine:</label><input type="number" id="bc_out_urine" value="1200" oninput="hitungBalansCairan()" class="w-full border border-slate-200 rounded p-1 bg-white font-bold"></div>
+                            <div><label class="text-[10px] text-slate-400">Drain / Muntah / Feses:</label><input type="number" id="bc_out_lain" value="200" oninput="hitungBalansCairan()" class="w-full border border-slate-200 rounded p-1 bg-white font-bold"></div>
+                        </div>
+                        <div class="col-span-2 grid grid-cols-2 gap-2 border-t border-slate-100 pt-2">
+                            <div><label class="text-slate-500 font-bold text-[11px]">BB Aktual Pasien (kg):</label><input type="number" id="bc_bb" value="60" oninput="hitungBalansCairan()" class="w-full border border-slate-200 rounded p-1.5 bg-slate-50 font-bold"></div>
+                            <div><label class="text-slate-500 font-bold text-[11px]">Suhu Tubuh Pasien (&deg;C):</label><input type="number" step="0.1" id="bc_temp" value="36.5" oninput="hitungBalansCairan()" class="w-full border border-slate-200 rounded p-1.5 bg-slate-50 font-bold"></div>
+                        </div>
+                    </div>
+                    <div class="bg-slate-950 p-3 rounded-xl grid grid-cols-2 gap-2 text-center text-white shadow-inner text-[11px]">
+                        <div>Estimasi IWL Harian:<br><strong id="res_bc_iwl" class="text-sky-400">900 mL</strong></div>
+                        <div>Hasil Balans 24 Jam:<br><strong id="res_bc_balans" class="text-amber-400">+200 mL</strong></div>
+                    </div>
+                </div>
+            </div>
+
         </div>
+
+        <!-- BOTTOM NAV [LOCKED] -->
+        <nav class="bg-white border-t border-slate-100 fixed bottom-0 left-0 right-0 h-16 shadow-xl flex justify-around items-center z-50 shrink-0 px-2">
+            <button onclick="navigateTo('kritis')" id="nav-kritis" class="active-nav flex flex-col items-center justify-center text-slate-400 text-center w-1/4 transition-all cursor-pointer"><i class="fa-solid fa-kit-medical text-sm mb-0.5"></i><span class="text-[9px] font-bold tracking-tight">Kritis</span></button>
+            <button onclick="navigateTo('ugd')" id="nav-ugd" class="flex flex-col items-center justify-center text-slate-400 text-center w-1/4 transition-all cursor-pointer"><i class="fa-solid fa-truck-medical text-sm mb-0.5"></i><span class="text-[9px] font-bold tracking-tight">UGD</span></button>
+            <button onclick="navigateTo('anak')" id="nav-anak" class="flex flex-col items-center justify-center text-slate-400 text-center w-1/4 transition-all cursor-pointer"><i class="fa-solid fa-baby text-sm mb-0.5"></i><span class="text-[9px] font-bold tracking-tight">Anak</span></button>
+            <button onclick="navigateTo('rawat')" id="nav-rawat" class="flex flex-col items-center justify-center text-slate-400 text-center w-1/4 transition-all cursor-pointer"><i class="fa-solid fa-hotel text-sm mb-0.5"></i><span class="text-[9px] font-bold tracking-tight">Rawat Inap</span></button>
+        </nav>
+
     </div>
 
-    <div id="page-careplan" class="page p-6">
-        <button onclick="showPage('home')" class="text-sm mb-4"><i class="fa fa-arrow-left"></i> Kembali</button>
-        <h2 class="font-bold text-lg mb-4">Smart Care Plan</h2>
-        <textarea id="patientData" class="w-full h-32 p-4 rounded-2xl border" placeholder="Input data klinis..."></textarea>
-        <button onclick="generateAskep()" class="w-full bg-blue-600 text-white py-3 rounded-2xl mt-3 font-bold text-sm">Generate AI</button>
-    </div>
-
-    <div id="page-webinar" class="page p-6">
-        <button onclick="showPage('home')" class="text-sm mb-4"><i class="fa fa-arrow-left"></i> Kembali</button>
-        <h2 class="font-bold text-lg mb-4">Webinar SKP</h2>
-        <div id="webinarList" class="space-y-4 text-xs">Memuat data...</div>
-    </div>
-
-    <div class="fixed bottom-0 w-full bg-white border-t p-4 flex justify-around z-50 text-gray-400">
-        <div onclick="showPage('home')" class="text-blue-600 text-center cursor-pointer"><i class="fa fa-home"></i><p class="text-[9px] font-bold">Beranda</p></div>
-        <div class="text-center cursor-pointer"><i class="fa fa-calculator"></i><p class="text-[9px] font-bold">Kalkulator</p></div>
-        <div class="text-center cursor-pointer"><i class="fa fa-brain"></i><p class="text-[9px] font-bold">Diagnosa</p></div>
-        <div class="text-center cursor-pointer"><i class="fa fa-book"></i><p class="text-[9px] font-bold">E-Book</p></div>
-        <div class="text-center cursor-pointer"><i class="fa fa-user"></i><p class="text-[9px] font-bold">Profil</p></div>
-    </div>
-
-    <script src="script.js"></script>
     <script>
-    // --- FUNGSI NAVIGASI TAB (Agar saat diklik menu berpindah) ---
-    function switchSubKritis(id) {
-        document.querySelectorAll('.sub-kritis-card').forEach(c => c.classList.add('hidden'));
-        document.getElementById('sub-card-' + id).classList.remove('hidden');
-    }
-    
-    function switchSubUGD(id) {
-        document.querySelectorAll('.sub-ugd-card').forEach(c => c.classList.add('hidden'));
-        document.getElementById('sub-card-' + id).classList.remove('hidden');
-    }
+        window.onload = function() {
+            navigateTo('kritis');
+            applyPresetObatMaster();
+            switchElektrolitMasterLabel();
+            hitungHemoAdvanced();
+            hitungPilarFarmakologi();
+            hitungPilarCairan();
+            hitungPilarResus();
+            hitungPilarNutrisi();
+            hitungPilarGejala();
+            // Inisialisasi Modul Rawat Inap v3.6
+            toggleFallRiskAgeView();
+            hitungNEWS2();
+            hitungBraden();
+            hitungBalansCairan();
+        };
 
-    function switchSubAnak(id) {
-        document.querySelectorAll('.sub-anak-card').forEach(c => c.classList.add('hidden'));
-        document.getElementById('sub-card-' + id).classList.remove('hidden');
-    }
+        // NAVIGATION TABS CONTROL
+        function navigateTo(sectionId) {
+            document.querySelectorAll('.tab-section').forEach(section => section.classList.add('hidden'));
+            document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active-nav'));
+            document.getElementById('section-' + sectionId).classList.remove('hidden');
+            document.getElementById('nav-' + sectionId).classList.add('active-nav');
+        }
 
-    // --- FUNGSI PERHITUNGAN (Logika Kalkulator) ---
-    function hitungPilarFarmakologi() {
-        const bb = parseFloat(document.getElementById('ped_f_bb').value) || 0;
-        const dosis = parseFloat(document.getElementById('ped_f_range').value) || 0;
-        const sediaan = parseFloat(document.getElementById('ped_f_sedia').value) || 1;
-        const mg = bb * dosis;
-        const ml = mg / sediaan;
-        document.getElementById('res_f_mg').innerText = mg + " mg";
-        document.getElementById('res_f_ml').innerText = ml.toFixed(2) + " mL";
-    }
+        function switchSubKritis(subId) {
+            document.querySelectorAll('.sub-kritis-card').forEach(card => card.classList.add('hidden'));
+            document.querySelectorAll('[id^="sub-kritis-"]').forEach(btn => btn.classList.remove('sub-active-kritis'));
+            document.getElementById('sub-card-' + subId).classList.remove('hidden');
+            document.getElementById('sub-kritis-' + subId).classList.add('sub-active-kritis');
+        }
 
-    function hitungPilarCairan() {
-        const bb = parseFloat(document.getElementById('ped_c_bb').value) || 0;
-        let rumatan = 0;
-        if (bb <= 10) rumatan = bb * 100;
-        else if (bb <= 20) rumatan = 1000 + ((bb - 10) * 50);
-        else rumatan = 1500 + ((bb - 20) * 20);
-        document.getElementById('res_c_rumatan_hari').innerText = rumatan + " mL";
-        document.getElementById('res_c_rumatan_jam').innerText = Math.round(rumatan/24) + " mL/Jam";
-    }
+        function switchSubUGD(subId) {
+            document.querySelectorAll('.sub-ugd-card').forEach(card => card.classList.add('hidden'));
+            document.querySelectorAll('[id^="sub-ugd-"]').forEach(btn => btn.classList.remove('sub-active-ugd'));
+            document.getElementById('sub-card-' + subId).classList.remove('hidden');
+            document.getElementById('sub-ugd-' + subId).classList.add('sub-active-ugd');
+        }
 
-    function hitungTriage() {
-        const e = parseInt(document.getElementById('gcs_e').value) || 0;
-        const v = parseInt(document.getElementById('gcs_v').value) || 0;
-        const m = parseInt(document.getElementById('gcs_m').value) || 0;
-        document.getElementById('lbl_gcs_total').innerText = (e + v + m);
-    }
-    
-    // Tambahkan fungsi hitung lainnya sesuai ID elemen Anda...
-</script>
-    <script>
-    // 1. NAVIGASI TAB (Sistem Switch Menu)
-    function switchSubKritis(id) {
-        document.querySelectorAll('.sub-kritis-card').forEach(c => c.classList.add('hidden'));
-        document.getElementById('sub-card-' + id).classList.remove('hidden');
-    }
-    function switchSubUGD(id) {
-        document.querySelectorAll('.sub-ugd-card').forEach(c => c.classList.add('hidden'));
-        document.getElementById('sub-card-' + id).classList.remove('hidden');
-    }
-    function switchSubAnak(id) {
-        document.querySelectorAll('.sub-anak-card').forEach(c => c.classList.add('hidden'));
-        document.getElementById('sub-card-' + id).classList.remove('hidden');
-    }
+        function switchSubAnak(subId) {
+            document.querySelectorAll('.sub-anak-card').forEach(card => card.classList.add('hidden'));
+            document.querySelectorAll('[id^="sub-anak-"]').forEach(btn => btn.classList.remove('sub-active-anak'));
+            document.getElementById('sub-card-' + subId).classList.remove('hidden');
+            document.getElementById('sub-anak-' + subId).classList.add('sub-active-anak');
+        }
 
-    // 2. LOGIKA PERHITUNGAN
-    function hitungPilarFarmakologi() {
-        const bb = parseFloat(document.getElementById('ped_f_bb').value) || 0;
-        const dosis = parseFloat(document.getElementById('ped_f_range').value) || 0;
-        const sedia = parseFloat(document.getElementById('ped_f_sedia').value) || 1;
-        const mg = bb * dosis;
-        const ml = mg / sedia;
-        document.getElementById('res_f_mg').innerText = mg.toFixed(1) + " mg";
-        document.getElementById('res_f_ml').innerText = ml.toFixed(2) + " mL";
-    }
+        function switchSubRawat(subId) {
+            document.querySelectorAll('.sub-rawat-card').forEach(card => card.classList.add('hidden'));
+            document.querySelectorAll('[id^="sub-rawat-"]').forEach(btn => btn.classList.remove('sub-active-rawat'));
+            document.getElementById('sub-card-' + subId).classList.remove('hidden');
+            document.getElementById('sub-rawat-' + subId).classList.add('sub-active-rawat');
+        }
 
-    function hitungPilarCairan() {
-        const bb = parseFloat(document.getElementById('ped_c_bb').value) || 0;
-        let rumatan = 0;
-        if (bb <= 10) rumatan = bb * 100;
-        else if (bb <= 20) rumatan = 1000 + ((bb - 10) * 50);
-        else rumatan = 1500 + ((bb - 20) * 20);
-        document.getElementById('res_c_rumatan_hari').innerText = rumatan + " mL";
-        document.getElementById('res_c_rumatan_jam').innerText = Math.round(rumatan/24) + " mL/Jam";
-    }
+        // ================= OBAT MASTER CRITIS [LOCKED] =================
+        function applyPresetObatMaster() {
+            const val = document.getElementById('kr_preset_obat').value;
+            const lblDosis = document.getElementById('lbl_dosis_unit');
+            lblDosis.innerText = "Dosis (mcg/kg/mnt):";
+            if (val === 'dopa') setupObatInputs(200, 50, 5);
+            else if (val === 'dobu') setupObatInputs(250, 50, 5);
+            else if (val === 'ne') setupObatInputs(4, 50, 0.05);
+            else if (val === 'epi') setupObatInputs(1, 50, 0.05);
+            else if (val === 'milrinone') setupObatInputs(10, 50, 0.375);
+            else if (val === 'levo') setupObatInputs(12.5, 50, 0.1);
+            else if (val === 'aminofilin') { lblDosis.innerText = "Dosis (mg/kg/Jam):"; setupObatInputs(240, 50, 0.5); }
+            else if (val === 'bicnat') { lblDosis.innerText = "Dosis Meq Langsung:"; setupObatInputs(84, 100, 25); }
+            hitungObatKritisMaster();
+        }
+        function setupObatInputs(sed, peng, dos) {
+            document.getElementById('kr_sediaan').value = sed;
+            document.getElementById('kr_pengencer').value = peng;
+            document.getElementById('kr_dosis').value = dos;
+        }
+        function hitungObatKritisMaster() {
+            const sediaan = parseFloat(document.getElementById('kr_sediaan').value);
+            const pengencer = parseFloat(document.getElementById('kr_pengencer').value);
+            const bb = parseFloat(document.getElementById('kr_bb').value);
+            const dosis = parseFloat(document.getElementById('kr_dosis').value);
+            const val = document.getElementById('kr_preset_obat').value;
+            if (!sediaan || !pengencer || !bb || !dosis) return;
+            let kecepatan = 0; let konsentrasiText = "";
+            if (val === 'aminofilin') {
+                kecepatan = (dosis * bb) / (sediaan / pengencer);
+                konsentrasiText = `Konsentrasi: ${(sediaan/pengencer).toFixed(1)} mg/mL`;
+            } else if (val === 'bicnat') {
+                kecepatan = dosis; konsentrasiText = "Konsentrasi: 1 mEq / mL";
+            } else {
+                const konsentrasiMcg = (sediaan * 1000) / pengencer;
+                kecepatan = (dosis * bb * 60) / konsentrasiMcg;
+                konsentrasiText = `Konsentrasi: ${Math.round(konsentrasiMcg)} mcg/mL`;
+            }
+            document.getElementById('kr_res_obat').innerText = kecepatan.toFixed(2) + " mL/Jam";
+            document.getElementById('kr_konsentrasi_info').innerText = konsentrasiText;
+        }
 
-    function hitungTriage() {
-        const e = parseInt(document.getElementById('gcs_e').value) || 0;
-        const v = parseInt(document.getElementById('gcs_v').value) || 0;
-        const m = parseInt(document.getElementById('gcs_m').value) || 0;
-        document.getElementById('lbl_gcs_total').innerText = (e + v + m);
-    }
+        // ================= HEMODINAMIK PRO [LOCKED] =================
+        function hitungHemoAdvanced() {
+            const sys = parseFloat(document.getElementById('hm_sys').value) || 110;
+            const dia = parseFloat(document.getElementById('hm_dia').value) || 70;
+            const hr = parseFloat(document.getElementById('hm_hr').value) || 85;
+            const cvp = parseFloat(document.getElementById('hm_cvp').value) || 8;
+            const tb = parseFloat(document.getElementById('hm_tb').value) || 165;
+            const sv = parseFloat(document.getElementById('hm_sv').value) || 65;
+            const bb = parseFloat(document.getElementById('kr_bb').value) || 60;
+            const map = dia + ((sys - dia) / 3);
+            const bsa = Math.sqrt((tb * bb) / 3600);
+            const co = (sv * hr) / 1000; const ci = co / bsa;
+            const svr = ((map - cvp) / co) * 80;
+            document.getElementById('res_hm_map').innerText = map.toFixed(1) + " mmHg";
+            document.getElementById('res_hm_bsa').innerText = bsa.toFixed(2) + " m²";
+            document.getElementById('res_hm_co').innerText = co.toFixed(1) + " L/mnt";
+            document.getElementById('res_hm_ci').innerText = ci.toFixed(1) + " L/m²/mnt";
+            document.getElementById('res_hm_svr').innerText = Math.round(svr) + " dynes.sec/cm⁵";
+        }
 
-    function hitungLukaBakarUGD() {
-        const bb = parseFloat(document.getElementById('ugd_lb_bb').value) || 0;
-        const luas = parseFloat(document.getElementById('ugd_lb_luas').value) || 0;
-        const total = 4 * bb * luas;
-        document.getElementById('ugd_lb_total').innerText = total + " mL";
-        document.getElementById('ugd_lb_8jam').innerText = (total / 2) + " mL";
-    }
+        // ================= ELEKTROLIT LOGIC [LOCKED] =================
+        function switchElektrolitMasterLabel() {
+            const jenis = document.getElementById('kr_el_master_jenis').value;
+            const lblAktual = document.getElementById('lbl_el_aktual');
+            const lblTarget = document.getElementById('lbl_el_target');
+            document.getElementById('kr_el_target').disabled = false;
+            if (jenis === 'k') { lblAktual.innerText = "Nilai K+ Aktual:"; lblTarget.innerText = "Target K+ (Normal ~4.0):"; setupElValues(2.5, 4.0); }
+            else if (jenis === 'na_hipo') { lblAktual.innerText = "Nilai Na+ Aktual:"; lblTarget.innerText = "Target Na+ Dikehendaki (Maks ↑10 mEq/24j):"; setupElValues(120, 130); }
+            else if (jenis === 'na_hiper') { lblAktual.innerText = "Nilai Na+ Aktual:"; lblTarget.innerText = "Nilai Batas Normal Standar (140):"; setupElValues(160, 140); document.getElementById('kr_el_target').disabled = true; }
+            else if (jenis === 'ca') { lblAktual.innerText = "Dosis mEq Diinginkan langsung:"; lblTarget.innerText = "Abaikan Field Target (Isi 0):"; setupElValues(4.5, 0); document.getElementById('kr_el_target').disabled = true; }
+            else if (jenis === 'mg') { lblAktual.innerText = "Target Dosis MgSO4 Gram:"; lblTarget.innerText = "Abaikan Field Target (Isi 0):"; setupElValues(2, 0); document.getElementById('kr_el_target').disabled = true; }
+            else if (jenis === 'bicnat_corr') { lblAktual.innerText = "Nilai HCO3 Aktual:"; lblTarget.innerText = "Target HCO3 Dikehendaki (Normal ~24):"; setupElValues(14, 22); }
+            hitungElektrolitMaster();
+        }
+        function setupElValues(akt, tar) { document.getElementById('kr_el_aktual').value = akt; document.getElementById('kr_el_target').value = tar; }
+        function hitungElektrolitMaster() {
+            const jenis = document.getElementById('kr_el_master_jenis').value;
+            const bb = parseFloat(document.getElementById('kr_el_bb').value) || 60;
+            const akt = parseFloat(document.getElementById('kr_el_aktual').value) || 0;
+            const tar = parseFloat(document.getElementById('kr_el_target').value) || 0;
+            let resText = ""; let infoText = "";
+            if (jenis === 'k') { const meq = (tar - akt) * bb * 0.4; resText = `${meq.toFixed(1)} mEq KCL`; infoText = "Koreksi perifer maks 10 mEq/jam, central maks 20 mEq/jam."; }
+            else if (jenis === 'na_hipo') { const meqNa = (tar - akt) * bb * 0.6; const mlNacl = meqNa / 0.513; resText = `${Math.round(meqNa)} mEq / ${Math.round(mlNacl)} mL NaCl 3%`; infoText = "Naikkan perlahan! Bahaya CPM/ODS jika terlalu cepat."; }
+            else if (jenis === 'na_hiper') { const literAir = 0.6 * bb * ((akt / 140) - 1); resText = `${literAir.toFixed(2)} Liter Air Bebas`; infoText = "Berikan via Enteral (NGT) berupa air matang perlahan."; }
+            else if (jenis === 'ca') { const mlCa = (akt / 4.65) * 10; resText = `${akt} mEq ≈ ${mlCa.toFixed(1)} mL Ca Glukonas 10%`; infoText = "Berikan via IV Bolus Lambat 5-10 menit."; }
+            else if (jenis === 'mg') { const meqMg = akt * 8.12; resText = `${akt} Gram MgSO4 (± ${meqMg.toFixed(1)} mEq)`; infoText = "Encerkan dalam 100mL NS, drip 30-60 menit."; }
+            else if (jenis === 'bicnat_corr') { const meqBicnat = (tar - akt) * bb * 0.3; resText = `${meqBicnat.toFixed(1)} mEq Bicnat / Meylon`; infoText = "Berikan 1/2 dosis via IV perlahan."; }
+            document.getElementById('kr_res_el').innerText = resText; document.getElementById('kr_info_el').innerText = infoText;
+        }
 
-    function addBurnLuas(val) {
-        const input = document.getElementById('ugd_lb_luas');
-        input.value = parseInt(input.value) + val;
-        hitungLukaBakarUGD();
-    }
-    
-    // Inisialisasi awal
-    hitungPilarFarmakologi();
-    hitungPilarCairan();
-    hitungTriage();
-    hitungLukaBakarUGD();
-</script>
+        // ================= EMERGENCY & TRIAGE LOGIC [LOCKED] =================
+        function hitungTriage() {
+            const e = parseInt(document.getElementById('gcs_e').value) || 4; const v = parseInt(document.getElementById('gcs_v').value) || 5; const m = parseInt(document.getElementById('gcs_m').value) || 6;
+            document.getElementById('lbl_gcs_total').innerText = (e + v + m);
+        }
+        function addBurnLuas(n) { document.getElementById('ugd_lb_luas').value = (parseFloat(document.getElementById('ugd_lb_luas').value) || 0) + n; hitungLukaBakarUGD(); }
+        function hitungLukaBakarUGD() {
+            const bb = parseFloat(document.getElementById('ugd_lb_bb').value) || 60; const luas = parseFloat(document.getElementById('ugd_lb_luas').value) || 0;
+            document.getElementById('ugd_lb_total').innerText = (4 * bb * luas) + " mL"; document.getElementById('ugd_lb_8jam').innerText = (2 * bb * luas) + " mL";
+        }
+        function hitungSyokKelas() {
+            const kl = parseInt(document.getElementById('sh_kelas').value) || 1; const bb = parseFloat(document.getElementById('sh_bb').value) || 60;
+            document.getElementById('sh_res_vol').innerText = `± ${Math.round(bb * 70 * (kl * 0.12))} mL`;
+        }
+        function hitungAntidote() { const bb = parseFloat(document.getElementById('ant_bb').value) || 50; document.getElementById('ant_hasil').innerText = (bb * 150) + " mg"; }
+        function hitungAGDKritis() { document.getElementById('kr_res_agd').innerText = "Asidosis Respiratorik Terkompensasi Sebagian"; }
+
+        // ================= PEDIATRIC 5 PILAR ENGINES [LOCKED] =================
+        function hitungPilarFarmakologi() {
+            const bb = parseFloat(document.getElementById('ped_f_bb').value) || 10; const range = parseFloat(document.getElementById('ped_f_range').value) || 15; const sedia = parseFloat(document.getElementById('ped_f_sedia').value) || 24;
+            const totalMg = bb * range; document.getElementById('res_f_mg').innerText = totalMg.toFixed(1) + " mg"; document.getElementById('res_f_ml').innerText = (totalMg / sedia).toFixed(2) + " mL";
+            const spMg = parseFloat(document.getElementById('ped_sp_mg').value) || 200; const spVol = parseFloat(document.getElementById('ped_sp_vol').value) || 50; const spDos = parseFloat(document.getElementById('ped_sp_dos').value) || 5; const spBb = parseFloat(document.getElementById('ped_sp_bb').value) || 10;
+            const ccJam = (spDos * spBb * 60) / ((spMg * 1000) / spVol); document.getElementById('res_sp_kecepatan').innerText = ccJam.toFixed(2) + " mL/Jam";
+            document.getElementById('res_anti_pct_mg').innerText = `${bb*10} - ${bb*15} mg`; document.getElementById('res_anti_pct_ml').innerText = `${((bb*10)/24).toFixed(1)} - ${((bb*15)/24).toFixed(1)} mL`;
+            document.getElementById('res_anti_ib_mg').innerText = `${bb*5} - ${bb*10} mg`; document.getElementById('res_anti_ib_ml').innerText = `${((bb*5)/20).toFixed(1)} - ${((bb*10)/20).toFixed(1)} mL`;
+        }
+        function hitungPilarCairan() {
+            const bb = parseFloat(document.getElementById('ped_c_bb').value) || 14;
+            let vol = bb <= 10 ? bb * 100 : (bb <= 20 ? 1000 + (bb - 10) * 50 : 1500 + (bb - 20) * 20);
+            document.getElementById('res_c_rumatan_hari').innerText = vol + " mL"; document.getElementById('res_c_rumatan_jam').innerText = Math.round(vol / 24) + " mL/Jam";
+            const factor = parseFloat(document.getElementById('ped_c_dehid').value) || 0.10; const bbAwal = parseFloat(document.getElementById('ped_c_bb_awal').value) || 10;
+            document.getElementById('res_c_defisit').innerText = (bbAwal * factor * 1000) + " mL";
+            const jenis = document.getElementById('ped_el_jenis').value; const lab = parseFloat(document.getElementById('ped_el_lab').value) || 0; const target = parseFloat(document.getElementById('ped_el_target').value) || 0;
+            if(jenis === 'na') { const defisit = (target - lab) * bb * 0.6; document.getElementById('res_el_hitung').innerText = defisit.toFixed(1) + " mEq Na (≈ " + (defisit/0.513).toFixed(0) + " mL NaCl 3%)"; }
+            else { const defisitK = (target - lab) * bb * 0.4; document.getElementById('res_el_hitung').innerText = defisitK.toFixed(1) + " mEq Kalium"; }
+        }
+        function hitungPilarResus() {
+            const bb = parseFloat(document.getElementById('ped_r_bb').value) || 10; const usia = parseFloat(document.getElementById('ped_r_usia').value) || 2;
+            document.getElementById('res_r_ett').innerText = ((usia / 4) + 4).toFixed(1) + " / " + ((usia / 4) + 3.5).toFixed(1) + " mm"; document.getElementById('res_r_epi').innerText = (bb * 0.1).toFixed(2) + " mL";
+            let lmaNum = bb < 5 ? "1" : (bb < 10 ? "1.5" : (bb < 20 ? "2" : "2.5")); document.getElementById('res_r_alat').innerText = `Fr 8 / LMA ${lmaNum}`;
+            const totalPews = parseInt(document.getElementById('pews_p').value) + parseInt(document.getElementById('pews_k').value) + parseInt(document.getElementById('pews_r').value);
+            document.getElementById('res_pews_total').innerText = `${totalPews} Poin (${totalPews >= 4 ? 'Kuning/Merah' : 'Hijau'})`;
+            const totalApgar = parseInt(document.getElementById('ap_a').value) + parseInt(document.getElementById('ap_p').value) + parseInt(document.getElementById('ap_g').value) + parseInt(document.getElementById('ap_ac').value) + parseInt(document.getElementById('ap_r').value);
+            document.getElementById('res_apgar_total').innerText = `${totalApgar} Poin (${totalApgar <= 6 ? 'Asfiksia' : 'Normal'})`;
+        }
+        function hitungPilarNutrisi() {
+            const bb = parseFloat(document.getElementById('ped_n_bb').value) || 9.5;
+            document.getElementById('res_n_zscore').innerText = bb < 7.5 ? "Gizi Kurang" : "Gizi Baik (Normal)";
+            document.getElementById('res_n_tee').innerText = Math.round(bb * parseFloat(document.getElementById('ped_n_bmr').value) * parseFloat(document.getElementById('ped_n_stres').value)) + " kkal/Hari";
+            const lossPercent = ((parseFloat(document.getElementById('ped_n_bbl').value) - parseFloat(document.getElementById('ped_n_bb_sekarang').value)) / parseFloat(document.getElementById('ped_n_bbl').value)) * 100;
+            document.getElementById('res_n_susut').innerText = lossPercent.toFixed(2) + "%";
+        }
+        function hitungPilarGejala() {
+            const totalFlacc = parseInt(document.getElementById('flacc_f').value) + parseInt(document.getElementById('flacc_l').value) + parseInt(document.getElementById('flacc_a').value) + parseInt(document.getElementById('flacc_c').value) + parseInt(document.getElementById('flacc_co').value);
+            document.getElementById('res_flacc_total').innerText = `${totalFlacc} (${totalFlacc >= 4 ? 'Nyeri' : 'Aman'})`;
+            const totalDownes = parseInt(document.getElementById('dw_rr').value) + parseInt(document.getElementById('dw_ret').value) + parseInt(document.getElementById('dw_sian').value) + parseInt(document.getElementById('dw_air').value);
+            document.getElementById('res_downes_total').innerText = `${totalDownes} Poin (${totalDownes >= 4 ? 'CPAP/Distres' : 'Normal'})`;
+            const jam = parseFloat(document.getElementById('ped_g_jam').value); const bili = parseFloat(document.getElementById('ped_g_bili').value);
+            document.getElementById('res_gejala_bhutani').innerText = (jam <= 48 && bili >= 13) ? "High Risk (Wajib Fototerapi)" : "Low-Intermediate Zone";
+        }
+
+
+        // ================= INPATIENT SUITE LOGIC (RAWAT INAP v3.6) =================
+
+        // 4.1 Toggle View Usia Risiko Jatuh
+        function toggleFallRiskAgeView() {
+            const ageType = document.getElementById('fall_risk_age_type').value;
+            
+            document.getElementById('fall-group-adult').classList.add('hidden');
+            document.getElementById('fall-group-pediatric').classList.add('hidden');
+            document.getElementById('fall-group-geriatric').classList.add('hidden');
+
+            if(ageType === 'adult') {
+                document.getElementById('fall-group-adult').classList.remove('hidden');
+                document.getElementById('fall_risk_label_type').innerText = "Hasil Analisis Morse (Dewasa)";
+            } else if(ageType === 'pediatric') {
+                document.getElementById('fall-group-pediatric').classList.remove('hidden');
+                document.getElementById('fall_risk_label_type').innerText = "Hasil Analisis Humpty Dumpty (Anak)";
+            } else if(ageType === 'geriatric') {
+                document.getElementById('fall-group-geriatric').classList.remove('hidden');
+                document.getElementById('fall_risk_label_type').innerText = "Hasil Analisis Sydney Scoring (Lansia)";
+            }
+            hitungTripleFalls();
+        }
+
+        // 4.1 Engine Kalkulator Triple Risiko Jatuh
+        function hitungTripleFalls() {
+            const ageType = document.getElementById('fall_risk_age_type').value;
+            const resScore = document.getElementById('res_fall_risk_total');
+            const resAction = document.getElementById('res_fall_risk_action');
+
+            if(ageType === 'adult') {
+                // Morse Fall Scale
+                const score = parseInt(document.getElementById('mfs_1').value) +
+                              parseInt(document.getElementById('mfs_2').value) +
+                              parseInt(document.getElementById('mfs_3').value) +
+                              parseInt(document.getElementById('mfs_4').value) +
+                              parseInt(document.getElementById('mfs_5').value) +
+                              parseInt(document.getElementById('mfs_6').value);
+                
+                if (score >= 45) {
+                    resScore.className = "text-red-400 text-sm font-black animate-pulse";
+                    resScore.innerText = `${score} POIN (RISIKO TINGGI)`;
+                    resAction.innerText = "Intervensi: Pasang GELANG KUNING, segitiga risiko jatuh di bed, kunci roda bed, dampingi ke toilet.";
+                } else if (score >= 25) {
+                    resScore.className = "text-amber-400 text-sm font-black";
+                    resScore.innerText = `${score} POIN (Risiko Sedang)`;
+                    resAction.innerText = "Intervensi: Edukasi pasien/keluarga, pastikan bell jangkauan tangan, pencahayaan adekuat.";
+                } else {
+                    resScore.className = "text-emerald-400 text-sm font-black";
+                    resScore.innerText = `${score} POIN (Risiko Rendah)`;
+                    resAction.innerText = "Intervensi: Lakukan orientasi kamar rawat pada pasien, pertahankan penghalang bed atas.";
+                }
+            } 
+            else if(ageType === 'pediatric') {
+                // Humpty Dumpty Scale
+                const score = parseInt(document.getElementById('hds_1').value) +
+                              parseInt(document.getElementById('hds_2').value) +
+                              parseInt(document.getElementById('hds_3').value) +
+                              parseInt(document.getElementById('hds_4').value) +
+                              parseInt(document.getElementById('hds_5').value) +
+                              parseInt(document.getElementById('hds_6').value) +
+                              parseInt(document.getElementById('hds_7').value);
+                
+                if (score >= 12) {
+                    resScore.className = "text-red-400 text-sm font-black animate-pulse";
+                    resScore.innerText = `${score} POIN (RISIKO TINGGI)`;
+                    resAction.innerText = "Intervensi Anak: Pasang gelang kuning, kunci siderail bed penuh, edukasi orang tua jangan tinggalkan balita sendirian.";
+                } else {
+                    resScore.className = "text-emerald-400 text-sm font-black";
+                    resScore.innerText = `${score} POIN (Risiko Rendah)`;
+                    resAction.innerText = "Intervensi Anak: Standar keselamatan pediatrik umum, edukasi posisi bed rendah harian.";
+                }
+            } 
+            else if(ageType === 'geriatric') {
+                // Sydney Scoring (Lansia)
+                const score = parseInt(document.getElementById('sds_1').value) +
+                              parseInt(document.getElementById('sds_2').value) +
+                              parseInt(document.getElementById('sds_3').value) +
+                              parseInt(document.getElementById('sds_4').value) +
+                              parseInt(document.getElementById('sds_5').value);
+                
+                if (score >= 3) {
+                    resScore.className = "text-red-400 text-sm font-black animate-pulse";
+                    resScore.innerText = `${score} POIN (RISIKO TINGGI LANSIA)`;
+                    resAction.innerText = "Intervensi Geriatri: Protokol jatuh ketat, sandal anti-slip, pasang tanda jatuh, kosongkan rute ke toilet dari hambatan.";
+                } else {
+                    resScore.className = "text-emerald-400 text-sm font-black";
+                    resScore.innerText = `${score} POIN (Risiko Rendah)`;
+                    resAction.innerText = "Intervensi Geriatri: Pantau berkala mobilisasi, pastikan alat bantu jalan lansia dekat jangkauan.";
+                }
+            }
+        }
+
+        // 4.2 NEWS2 Calculator Engine
+        function hitungNEWS2() {
+            const score = parseInt(document.getElementById('news_rr').value) +
+                          parseInt(document.getElementById('news_spo2').value) +
+                          parseInt(document.getElementById('news_o2').value) +
+                          parseInt(document.getElementById('news_sbp').value) +
+                          parseInt(document.getElementById('news_hr').value) +
+                          parseInt(document.getElementById('news_avpu').value) +
+                          parseInt(document.getElementById('news_temp').value);
+
+            const lblTotal = document.getElementById('res_news_total');
+            const lblAksi = document.getElementById('res_news_aksi');
+
+            lblTotal.innerText = score + " POIN";
+
+            if (score === 0) {
+                lblTotal.className = "text-emerald-400 text-lg font-black";
+                lblAksi.innerText = "Status Aman. Observasi rutin minimal setiap 12 jam sekali.";
+            } else if (score <= 4) {
+                lblTotal.className = "text-amber-400 text-lg font-black";
+                lblAksi.innerText = "Skor Rendah. Tingkatkan observasi per 4-6 jam, lapor Ketua Tim bangsal.";
+            } else if (score <= 6) {
+                lblTotal.className = "text-orange-500 text-lg font-black";
+                lblAksi.innerText = "Skor Sedang (Peringatan). Observasi ketat tiap 1 jam, laporkan Dokter Jaga / DPJP segera.";
+            } else {
+                lblTotal.className = "text-red-500 text-lg font-black animate-pulse";
+                lblAksi.innerText = "CRITICAL RISK! Aktivasi Tim TRC / MET / Code Blue. Siapkan trolley emergency!";
+            }
+        }
+
+        // 4.3 Braden Scale Engine
+        function hitungBraden() {
+            const score = parseInt(document.getElementById('br_1').value) +
+                          parseInt(document.getElementById('br_2').value) +
+                          parseInt(document.getElementById('br_3').value) +
+                          parseInt(document.getElementById('br_4').value) +
+                          parseInt(document.getElementById('br_5').value) +
+                          parseInt(document.getElementById('br_6').value);
+            
+            let status = "Aman (Tidak Berisiko Dekubitus)";
+            const lbl = document.getElementById('res_braden_total');
+
+            if(score <= 9) {
+                lbl.className = "text-red-400 text-sm font-black animate-pulse";
+                status = "Risiko Sangat Tinggi (Wajib Kasur Dekubitus + Reposisi tiap 2 jam)";
+            } else if(score <= 12) {
+                lbl.className = "text-red-400 text-sm font-black";
+                status = "Risiko Tinggi (Protokol Alih Baring Ketat miring kanan/kiri)";
+            } else if(score <= 14) {
+                lbl.className = "text-amber-400 text-sm font-black";
+                status = "Risiko Sedang (Gunakan pelembab kulit tambahan)";
+            } else if(score <= 18) {
+                lbl.className = "text-amber-400 text-sm font-black";
+                status = "Risiko Ringan (Pantau kelembaban sesering mungkin)";
+            } else {
+                lbl.className = "text-emerald-400 text-sm font-black";
+            }
+            lbl.innerText = `${score} Poin (${status})`;
+        }
+
+        // 4.4 Balans Cairan & IWL Harian Engine
+        function hitungBalansCairan() {
+            const bb = parseFloat(document.getElementById('bc_bb').value) || 60;
+            const temp = parseFloat(document.getElementById('bc_temp').value) || 36.5;
+
+            const oral = parseFloat(document.getElementById('bc_in_oral').value) || 0;
+            const iv = parseFloat(document.getElementById('bc_in_iv').value) || 0;
+            const urine = parseFloat(document.getElementById('bc_out_urine').value) || 0;
+            const lain = parseFloat(document.getElementById('bc_out_lain').value) || 0;
+
+            let iwlDasar = 15 * bb;
+            if (temp > 37.5) {
+                const selisihSuhu = temp - 37.5;
+                iwlDasar = iwlDasar + (0.1 * iwlDasar * selisihSuhu);
+            }
+
+            const totalIntake = oral + iv;
+            const totalOutput = urine + lain + iwlDasar;
+            const balans24Jam = totalIntake - totalOutput;
+
+            document.getElementById('res_bc_iwl').innerText = Math.round(iwlDasar) + " mL";
+            const tandaBalans = balans24Jam >= 0 ? "+" : "";
+            document.getElementById('res_bc_balans').innerText = `${tandaBalans}${Math.round(balans24Jam)} mL`;
+        }
+    </script>
 </body>
 </html>
