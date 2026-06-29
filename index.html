@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Nurse App</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .page { display: none; }
+        .active-page { display: block; }
+    </style>
 </head>
 <body class="bg-gray-50 pb-24">
 
+    <!-- 1. HALAMAN BERANDA -->
     <div id="page-home" class="page active-page">
         <div class="p-6 bg-white shadow-sm">
             <h1 class="text-xl font-extrabold text-gray-800">Halo, Perawat Hebat! 👋</h1>
@@ -30,21 +33,35 @@
                 <div onclick="showPage('webinar')" class="feature-item bg-white p-3 rounded-2xl border shadow-sm cursor-pointer"><i class="fa fa-calendar text-blue-400 mb-2"></i><p class="text-[9px] font-bold">Webinar</p></div>
             </div>
         </div>
+
+        <div class="p-4">
+            <h3 class="font-bold text-gray-800 mb-4">Artikel Terbaru</h3>
+            <div class="bg-white p-4 rounded-2xl border shadow-sm flex gap-4 items-center">
+                <div class="bg-gray-200 w-16 h-16 rounded-xl flex-shrink-0"></div>
+                <div>
+                    <span class="bg-blue-100 text-blue-600 text-[8px] font-bold px-2 py-0.5 rounded">Medikal Bedah</span>
+                    <h4 class="text-xs font-bold mt-1 text-gray-800">Manajemen Nyeri Pasien Post Operasi</h4>
+                </div>
+            </div>
+        </div>
     </div>
 
+    <!-- 2. HALAMAN CARE PLAN -->
     <div id="page-careplan" class="page p-6">
         <button onclick="showPage('home')" class="text-sm mb-4"><i class="fa fa-arrow-left"></i> Kembali</button>
         <h2 class="font-bold text-lg mb-4">Smart Care Plan</h2>
         <textarea id="patientData" class="w-full h-32 p-4 rounded-2xl border" placeholder="Input data klinis..."></textarea>
-        <button onclick="generateAskep()" class="w-full bg-blue-600 text-white py-3 rounded-2xl mt-3 font-bold text-sm">Generate AI</button>
+        <button onclick="generateAskep()" id="btnGen" class="w-full bg-blue-600 text-white py-3 rounded-2xl mt-3 font-bold text-sm">Generate AI</button>
     </div>
 
+    <!-- 3. HALAMAN WEBINAR -->
     <div id="page-webinar" class="page p-6">
         <button onclick="showPage('home')" class="text-sm mb-4"><i class="fa fa-arrow-left"></i> Kembali</button>
         <h2 class="font-bold text-lg mb-4">Webinar SKP</h2>
         <div id="webinarList" class="space-y-4 text-xs">Memuat data...</div>
     </div>
 
+    <!-- BOTTOM NAV -->
     <div class="fixed bottom-0 w-full bg-white border-t p-4 flex justify-around z-50 text-gray-400">
         <div onclick="showPage('home')" class="text-blue-600 text-center cursor-pointer"><i class="fa fa-home"></i><p class="text-[9px] font-bold">Beranda</p></div>
         <div class="text-center cursor-pointer"><i class="fa fa-calculator"></i><p class="text-[9px] font-bold">Kalkulator</p></div>
@@ -53,116 +70,34 @@
         <div class="text-center cursor-pointer"><i class="fa fa-user"></i><p class="text-[9px] font-bold">Profil</p></div>
     </div>
 
-    <script src="script.js"></script>
     <script>
-    // --- FUNGSI NAVIGASI TAB (Agar saat diklik menu berpindah) ---
-    function switchSubKritis(id) {
-        document.querySelectorAll('.sub-kritis-card').forEach(c => c.classList.add('hidden'));
-        document.getElementById('sub-card-' + id).classList.remove('hidden');
-    }
-    
-    function switchSubUGD(id) {
-        document.querySelectorAll('.sub-ugd-card').forEach(c => c.classList.add('hidden'));
-        document.getElementById('sub-card-' + id).classList.remove('hidden');
-    }
+        const CSV_URL = "PASTE_LINK_CSV_ANDA";
+        
+        function showPage(id) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active-page'));
+            document.getElementById('page-' + id).classList.add('active-page');
+            if(id === 'webinar') loadWebinars();
+        }
 
-    function switchSubAnak(id) {
-        document.querySelectorAll('.sub-anak-card').forEach(c => c.classList.add('hidden'));
-        document.getElementById('sub-card-' + id).classList.remove('hidden');
-    }
+        async function loadWebinars() {
+            const res = await fetch(CSV_URL);
+            const csv = await res.text();
+            Papa.parse(csv, { header: true, complete: (res) => {
+                document.getElementById('webinarList').innerHTML = res.data.map(item => `
+                    <div class="bg-white p-4 rounded-2xl border shadow-sm">
+                        <h3 class="font-bold text-sm">${item.Judul}</h3>
+                        <a href="${item.Link}" class="text-blue-600 text-[10px] font-bold">Daftar Sekarang</a>
+                    </div>
+                `).join('');
+            }});
+        }
 
-    // --- FUNGSI PERHITUNGAN (Logika Kalkulator) ---
-    function hitungPilarFarmakologi() {
-        const bb = parseFloat(document.getElementById('ped_f_bb').value) || 0;
-        const dosis = parseFloat(document.getElementById('ped_f_range').value) || 0;
-        const sediaan = parseFloat(document.getElementById('ped_f_sedia').value) || 1;
-        const mg = bb * dosis;
-        const ml = mg / sediaan;
-        document.getElementById('res_f_mg').innerText = mg + " mg";
-        document.getElementById('res_f_ml').innerText = ml.toFixed(2) + " mL";
-    }
-
-    function hitungPilarCairan() {
-        const bb = parseFloat(document.getElementById('ped_c_bb').value) || 0;
-        let rumatan = 0;
-        if (bb <= 10) rumatan = bb * 100;
-        else if (bb <= 20) rumatan = 1000 + ((bb - 10) * 50);
-        else rumatan = 1500 + ((bb - 20) * 20);
-        document.getElementById('res_c_rumatan_hari').innerText = rumatan + " mL";
-        document.getElementById('res_c_rumatan_jam').innerText = Math.round(rumatan/24) + " mL/Jam";
-    }
-
-    function hitungTriage() {
-        const e = parseInt(document.getElementById('gcs_e').value) || 0;
-        const v = parseInt(document.getElementById('gcs_v').value) || 0;
-        const m = parseInt(document.getElementById('gcs_m').value) || 0;
-        document.getElementById('lbl_gcs_total').innerText = (e + v + m);
-    }
-    
-    // Tambahkan fungsi hitung lainnya sesuai ID elemen Anda...
-</script>
-    <script>
-    // 1. NAVIGASI TAB (Sistem Switch Menu)
-    function switchSubKritis(id) {
-        document.querySelectorAll('.sub-kritis-card').forEach(c => c.classList.add('hidden'));
-        document.getElementById('sub-card-' + id).classList.remove('hidden');
-    }
-    function switchSubUGD(id) {
-        document.querySelectorAll('.sub-ugd-card').forEach(c => c.classList.add('hidden'));
-        document.getElementById('sub-card-' + id).classList.remove('hidden');
-    }
-    function switchSubAnak(id) {
-        document.querySelectorAll('.sub-anak-card').forEach(c => c.classList.add('hidden'));
-        document.getElementById('sub-card-' + id).classList.remove('hidden');
-    }
-
-    // 2. LOGIKA PERHITUNGAN
-    function hitungPilarFarmakologi() {
-        const bb = parseFloat(document.getElementById('ped_f_bb').value) || 0;
-        const dosis = parseFloat(document.getElementById('ped_f_range').value) || 0;
-        const sedia = parseFloat(document.getElementById('ped_f_sedia').value) || 1;
-        const mg = bb * dosis;
-        const ml = mg / sedia;
-        document.getElementById('res_f_mg').innerText = mg.toFixed(1) + " mg";
-        document.getElementById('res_f_ml').innerText = ml.toFixed(2) + " mL";
-    }
-
-    function hitungPilarCairan() {
-        const bb = parseFloat(document.getElementById('ped_c_bb').value) || 0;
-        let rumatan = 0;
-        if (bb <= 10) rumatan = bb * 100;
-        else if (bb <= 20) rumatan = 1000 + ((bb - 10) * 50);
-        else rumatan = 1500 + ((bb - 20) * 20);
-        document.getElementById('res_c_rumatan_hari').innerText = rumatan + " mL";
-        document.getElementById('res_c_rumatan_jam').innerText = Math.round(rumatan/24) + " mL/Jam";
-    }
-
-    function hitungTriage() {
-        const e = parseInt(document.getElementById('gcs_e').value) || 0;
-        const v = parseInt(document.getElementById('gcs_v').value) || 0;
-        const m = parseInt(document.getElementById('gcs_m').value) || 0;
-        document.getElementById('lbl_gcs_total').innerText = (e + v + m);
-    }
-
-    function hitungLukaBakarUGD() {
-        const bb = parseFloat(document.getElementById('ugd_lb_bb').value) || 0;
-        const luas = parseFloat(document.getElementById('ugd_lb_luas').value) || 0;
-        const total = 4 * bb * luas;
-        document.getElementById('ugd_lb_total').innerText = total + " mL";
-        document.getElementById('ugd_lb_8jam').innerText = (total / 2) + " mL";
-    }
-
-    function addBurnLuas(val) {
-        const input = document.getElementById('ugd_lb_luas');
-        input.value = parseInt(input.value) + val;
-        hitungLukaBakarUGD();
-    }
-    
-    // Inisialisasi awal
-    hitungPilarFarmakologi();
-    hitungPilarCairan();
-    hitungTriage();
-    hitungLukaBakarUGD();
-</script>
+        function searchFeature() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            document.querySelectorAll('.feature-item').forEach(item => {
+                item.style.display = item.innerText.toLowerCase().includes(input) ? "" : "none";
+            });
+        }
+    </script>
 </body>
 </html>
