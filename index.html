@@ -24,7 +24,10 @@
         <div class="p-4">
             <h3 class="font-bold text-gray-800 mb-4">Fitur Unggulan</h3>
             <div id="featureGrid" class="grid grid-cols-4 gap-3 text-center">
-                <div class="feature-item bg-white p-3 rounded-2xl border shadow-sm cursor-pointer"><i class="fa fa-calculator text-blue-500 mb-2"></i><p class="text-[9px] font-bold">Kalkulator</p></div>
+                <div onclick="window.location.href='kalkulator.html'" class="feature-item bg-white p-3 rounded-2xl border shadow-sm cursor-pointer hover:bg-blue-50 transition">
+    <i class="fa fa-calculator text-blue-500 mb-2"></i>
+    <p class="text-[9px] font-bold">Kalkulator</p>
+</div>
                 <div class="feature-item bg-white p-3 rounded-2xl border shadow-sm cursor-pointer"><i class="fa fa-brain text-purple-500 mb-2"></i><p class="text-[9px] font-bold">AI Diagnosa</p></div>
                 <div onclick="showPage('careplan')" class="feature-item bg-white p-3 rounded-2xl border shadow-sm cursor-pointer"><i class="fa fa-file-alt text-teal-500 mb-2"></i><p class="text-[9px] font-bold">Care Plan</p></div>
                 <div class="feature-item bg-white p-3 rounded-2xl border shadow-sm cursor-pointer"><i class="fa fa-book text-blue-700 mb-2"></i><p class="text-[9px] font-bold">Artikel</p></div>
@@ -64,7 +67,10 @@
     <!-- BOTTOM NAV -->
     <div class="fixed bottom-0 w-full bg-white border-t p-4 flex justify-around z-50 text-gray-400">
         <div onclick="showPage('home')" class="text-blue-600 text-center cursor-pointer"><i class="fa fa-home"></i><p class="text-[9px] font-bold">Beranda</p></div>
-        <div class="text-center cursor-pointer"><i class="fa fa-calculator"></i><p class="text-[9px] font-bold">Kalkulator</p></div>
+       <div onclick="window.location.href='kalkulator.html'" class="text-center cursor-pointer hover:text-blue-600 transition">
+    <i class="fa fa-calculator"></i>
+    <p class="text-[9px] font-bold">Kalkulator</p>
+</div>
         <div class="text-center cursor-pointer"><i class="fa fa-brain"></i><p class="text-[9px] font-bold">Diagnosa</p></div>
         <div class="text-center cursor-pointer"><i class="fa fa-book"></i><p class="text-[9px] font-bold">E-Book</p></div>
         <div class="text-center cursor-pointer"><i class="fa fa-user"></i><p class="text-[9px] font-bold">Profil</p></div>
