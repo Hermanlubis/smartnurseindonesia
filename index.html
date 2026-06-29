@@ -101,5 +101,68 @@
     
     // Tambahkan fungsi hitung lainnya sesuai ID elemen Anda...
 </script>
+    <script>
+    // 1. NAVIGASI TAB (Sistem Switch Menu)
+    function switchSubKritis(id) {
+        document.querySelectorAll('.sub-kritis-card').forEach(c => c.classList.add('hidden'));
+        document.getElementById('sub-card-' + id).classList.remove('hidden');
+    }
+    function switchSubUGD(id) {
+        document.querySelectorAll('.sub-ugd-card').forEach(c => c.classList.add('hidden'));
+        document.getElementById('sub-card-' + id).classList.remove('hidden');
+    }
+    function switchSubAnak(id) {
+        document.querySelectorAll('.sub-anak-card').forEach(c => c.classList.add('hidden'));
+        document.getElementById('sub-card-' + id).classList.remove('hidden');
+    }
+
+    // 2. LOGIKA PERHITUNGAN
+    function hitungPilarFarmakologi() {
+        const bb = parseFloat(document.getElementById('ped_f_bb').value) || 0;
+        const dosis = parseFloat(document.getElementById('ped_f_range').value) || 0;
+        const sedia = parseFloat(document.getElementById('ped_f_sedia').value) || 1;
+        const mg = bb * dosis;
+        const ml = mg / sedia;
+        document.getElementById('res_f_mg').innerText = mg.toFixed(1) + " mg";
+        document.getElementById('res_f_ml').innerText = ml.toFixed(2) + " mL";
+    }
+
+    function hitungPilarCairan() {
+        const bb = parseFloat(document.getElementById('ped_c_bb').value) || 0;
+        let rumatan = 0;
+        if (bb <= 10) rumatan = bb * 100;
+        else if (bb <= 20) rumatan = 1000 + ((bb - 10) * 50);
+        else rumatan = 1500 + ((bb - 20) * 20);
+        document.getElementById('res_c_rumatan_hari').innerText = rumatan + " mL";
+        document.getElementById('res_c_rumatan_jam').innerText = Math.round(rumatan/24) + " mL/Jam";
+    }
+
+    function hitungTriage() {
+        const e = parseInt(document.getElementById('gcs_e').value) || 0;
+        const v = parseInt(document.getElementById('gcs_v').value) || 0;
+        const m = parseInt(document.getElementById('gcs_m').value) || 0;
+        document.getElementById('lbl_gcs_total').innerText = (e + v + m);
+    }
+
+    function hitungLukaBakarUGD() {
+        const bb = parseFloat(document.getElementById('ugd_lb_bb').value) || 0;
+        const luas = parseFloat(document.getElementById('ugd_lb_luas').value) || 0;
+        const total = 4 * bb * luas;
+        document.getElementById('ugd_lb_total').innerText = total + " mL";
+        document.getElementById('ugd_lb_8jam').innerText = (total / 2) + " mL";
+    }
+
+    function addBurnLuas(val) {
+        const input = document.getElementById('ugd_lb_luas');
+        input.value = parseInt(input.value) + val;
+        hitungLukaBakarUGD();
+    }
+    
+    // Inisialisasi awal
+    hitungPilarFarmakologi();
+    hitungPilarCairan();
+    hitungTriage();
+    hitungLukaBakarUGD();
+</script>
 </body>
 </html>
